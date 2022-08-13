@@ -44,7 +44,18 @@ export class PacketEncoder {
 	public static sendHandshake(client: Client, info: AutoUpdate.Info) {
 		let buf = new Writer(5);
 		buf.writeUInt8(254);
-		buf.writeUInt32(22/*info.protocol*/);
+		
+		// made changes here
+		const gamemode = $("#gamemode").val();
+		if (gamemode === ":party") {
+			buf.writeUInt32(info.protocol);
+		}
+
+		if (gamemode === ":private") {
+			buf.writeUInt32(23);
+		}
+		//
+		
 		client.socket.send(buf.dataView.buffer);
 		buf = new Writer(5);
 		buf.writeUInt8(255);

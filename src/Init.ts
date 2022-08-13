@@ -103,10 +103,29 @@ export class MGxN3Bx {
 		}
 
 		clients.forEach((client) => sockets.push(client.socket.connect(url)));
-		//this.serverToken = url.match(/live-arena-([\w\d]+)\.agar\.io:\d+/)[1];
-		this.serverToken = "aW1zb2xvLnBybzoyMTA5Lw==";
+
+		// Made changes here
+		const gamemode = $("#gamemode").val();
+		const region2 = $("#region2").val();
+		
+		if (gamemode === ":private") {
+			//Arctida
+			if (region2 === "wss://imsolo.pro:2109/") {
+				this.serverToken = "aW1zb2xvLnBybzoyMTA5Lw==";
+			}
+			//Rookery
+			if (region2 === "wss://imsolo.pro:2104/") {
+				this.serverToken = "aW1zb2xvLnBybzoyMTA0Lw==";
+			}
+		 } else {
+			this.serverToken = url.match(/live-arena-([\w\d]+)\.agar\.io:\d+/)[1];
+		 }
+		 //
+
 		this.url = url;
-		return Promise.all(sockets).then(() => {
+		// Made changes here
+		return Promise.allSettled(sockets).then(() => { // allSettled | all
+		//	
 			clients.forEach((client) => {
 				this.clients.set(client.type, client);
 				PacketEncoder.sendHandshake(client, this.info);

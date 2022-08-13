@@ -1,0 +1,115 @@
+import { HotKeys } from "../Options/Hotkeys";
+import { Settings } from "../Options/Settings";
+import { Sliders } from "../Options/Sliders";
+import { Theming } from "../Options/Theming";
+
+export class Defaults {
+
+	public static title: string =  "MGxN3Bx";
+
+	public static settings: Settings.Obj = {
+		cellSuckAnimation: false,
+		rainbowBorder: true,
+		borderGlow: false,
+		cellShield: false,
+		hideFood: false,
+		foodGlow: true,
+		virusGlow: true,
+		nickText: true,
+		massText: true,
+		hideOwnNick: true,
+		hideOwnMass: false,
+		customSkins: true,
+		vanillaSkins: false,
+		switchLogins: false,
+		audioVisualiser: false,
+		sectors: false,
+		audioVisualiserURL: "https://xn3bula.xyz/song.mp3",
+		backgroundImage: true,
+		backgroundImageURL: "https://i.imgur.com/fufrtsJ.png",
+		menuImageURL: "https://i.imgur.com/CL0s66B.png",
+		circleOnSpawn: true,
+		minimapGhostCells: true,
+		multiboxRings: true,
+		teamCircleOnSpawn: false,
+	};
+
+	public static sliders: Sliders.Obj = {
+		animationDelay: 200,
+		rainbowBorderSpeed: 1,
+		cameraSpeed: 2,
+		zoomSpeed: 89,
+		audioVisualiserSize: 4.5,
+		audioVolume: 30,
+		foodGlowSize: 20,
+		virusOpacity: 0.6,
+		virusGlowSize: 20,
+		foodGlowStrength: 2,
+		virusStrokeSize: 15,
+		virusGlowStrength: 20,
+		foodSize: 3,
+		borderWidth: 50,
+		borderGlowSize: 200,
+		borderGlowStrength: 4,
+		menuBG1Opacity: 0.6,
+		menuBG2Opacity: 0.17,
+		hudSaturation: 2,
+		hudBlur: 0.45,
+		menuImageOpacity: 0.2,
+		player1CircleHue: 0,
+		player2CircleHue: 135,
+		teammateCircleHue: 55,
+		multiboxRingSize: 3,
+	};
+
+	public static theming: Theming.Obj = {
+		backgroundColor: "#000000",
+		backgroundImageColor: "#ff006c",
+		borderColor: "#e5d7fd",
+		borderGlowColor: "#ff006c",
+		foodColor: "#e5d7fd",
+		foodGlowColor: "#ff006c",
+		sectorFontColor:  "#000513",
+		sectorStrokeColor: "#000513",
+		virusColor: "#1e123d",
+		virusGlowColor: "#ff006c",
+		virusStrokeColor: "#e5d7fd",
+		visualiserColor1: "#ff006c",
+		visualiserColor2: "#000513",
+		menuBGMainColor: "#000000",
+		menuBGSecondColor: "#7d7d7d",
+		mainMenuColor: "#ff006c",
+		secondMenuColor: "#6000ff",
+		player1ActiveColor: "#ff00ff",
+		player1InactiveColor: "#ffffff",
+		player2ActiveColor: "#ff00ff",
+		player2InactiveColor: "#ffffff",
+		minimapSelfColor: "#ffd8ea",
+		minimapTeammateColor: "#ff006c",
+		minimapGhostCellsColor: "#00a2ff",
+		minimapViewportColor: "#6000ff",
+	};
+
+	public static hotkeys: HotKeys.Obj = {
+		feed: "W",
+		macroFeed: "E",
+		split: "SPACE",
+		doubleSplit: "G",
+		maxSplit: "T",
+		freeSpectate: "Q",
+		toggleMenu: "ESC",
+		chatInput: "ENTER",
+		multiboxSwitch: "TAB",
+		command1: "1",
+		command2: "2",
+		command3: "3",
+		command4: "4",
+		command5: "5",
+		zoom1: "ALT+1",
+		zoom2: "ALT+2",
+		zoom3: "ALT+3",
+		zoom4: "ALT+4",
+		zoom5: "ALT+5",
+	};
+
+}

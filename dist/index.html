@@ -1,0 +1,629 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="http://127.0.0.1:5500/dist/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
+    <title>MGxN3B X | AwesomeCL.dev</title>
+    <link rel="stylesheet" href="./assets/css/index.css?v=1588590826">
+    <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
+    <script src="https://apis.google.com/js/client:platform.js?onload=gapiAsyncInit" async defer></script>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu|Oswald&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-minicolors/2.3.4/jquery.minicolors.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-minicolors/2.3.4/jquery.minicolors.min.js"></script>
+</head>
+
+<body>
+    <div id="loading-screen">
+        <div id="loading-containter">
+            <div id="loading-logo"><img src="./assets/images/loading_screen_logo.png" alt=""></div>
+            <div id="loading-title">Easy Peasy loves you</div>
+        </div>
+    </div>
+    <div id="recaptchaV3-screen"></div>
+    <div id="Recaptcha-container">
+        <div id="Recaptcha"></div>
+    </div>
+    <div id="Recaptcha2-container">
+        <div id="Recaptcha2"></div>
+    </div>
+    <div class="menu">
+        <div class="main-menu-background"></div>
+        <div class="panel" id="main-panel">
+            <div class="user" id="user-1">
+                <div class="skin" id="skin-1">
+                    <div class="facebook-overlay"><button id="facebook-button"><i
+                                class="fab fa-facebook-f"></i></button></div>
+                    <div class="shop-overlay">
+                        <div class="coins"><i class="material-icons">monetization_on</i>
+                            <div class="coins-count">19250</div>
+                        </div>
+                        <div class="mass-boost"><button class="mass-boost-button x2-1h"><i>2x</i>
+                                <h5>1h</h5>
+                            </button><button class="mass-boost-button x3-1h"><i>3x</i>
+                                <h5>1h</h5>
+                            </button><button class="mass-boost-button x2-24h"><i>2x</i>
+                                <h5>24h</h5>
+                            </button><button class="mass-boost-button x3-24h"><i>3x</i>
+                                <h5>24h</h5>
+                            </button></div>
+                        <div class="logout"><button class="logout-button"><i class="material-icons">cancel</i></button>
+                        </div>
+                    </div><img class="skin-img" id="skin-img-1" crossorigin="Anonymous"
+                        src="https://i.imgur.com/WaiqY0C.png">
+                </div>
+                <div class="user-profile"><button id="profile-left" class="user-profile-button left"><i
+                            class="material-icons">keyboard_arrow_left</i></button></div><input class="user-input"
+                    id="user-name-1" placeholder="Name One"><input value="https://i.imgur.com/WaiqY0C.png"
+                    class="user-input" id="user-skin-1" placeholder="Skin One">
+                <div class="user-background"></div>
+            </div>
+            <div class="play-area">
+                <div class="buttons"><button class="menu-button" id="play-button"><i
+                            class="material-icons">play_arrow</i></button><button class="menu-button"
+                        id="spectate-button"><i class="material-icons">visibility</i></button></div>
+                <div class="room"><input class="room-input" id="tag" placeholder="Tag"><input class="room-input"
+                        id="party" placeholder="Party"><button class="room-button" id="create">Create</button><button
+                        class="room-button" id="join">Join</button></div>
+            </div>
+            <div class="options-area"><button class="options-button" id="settings-button"><i
+                        class="material-icons">settings</i></button><button class="options-button"
+                    id="hotkeys-button"><i class="material-icons">keyboard</i></button><button class="options-button"
+                    id="theme-button"><i class="material-icons">opacity</i></button></div>
+            <div class="user" id="user-2">
+                <div class="skin" id="skin-2">
+                    <div class="google-overlay"><button id="google-button"><i class="fab fa-google"></i></button></div>
+                    <div class="shop-overlay">
+                        <div class="coins"><i class="material-icons">monetization_on</i>
+                            <div class="coins-count">19250</div>
+                        </div>
+                        <div class="mass-boost"><button class="mass-boost-button x2-1h"><i>2x</i>
+                                <h5>1h</h5>
+                            </button><button class="mass-boost-button x3-1h"><i>3x</i>
+                                <h5>1h</h5>
+                            </button><button class="mass-boost-button x2-24h"><i>2x</i>
+                                <h5>24h</h5>
+                            </button><button class="mass-boost-button x3-24h"><i>3x</i>
+                                <h5>24h</h5>
+                            </button></div>
+                        <div class="logout"><button class="logout-button"><i class="material-icons">cancel</i></button>
+                        </div>
+                    </div><img class="skin-img" id="skin-img-2" crossorigin="Anonymous"
+                        src="https://i.imgur.com/6V66q6x.png">
+                </div>
+                <div class="user-profile"><button id="profile-right" class="user-profile-button right"><i
+                            class="material-icons">keyboard_arrow_right</i></button></div><input class="user-input"
+                    id="user-name-2" placeholder="Name Two"><input value="https://i.imgur.com/6V66q6x.png"
+                    class="user-input" id="user-skin-2" placeholder="Skin Two">
+                <div class="user-background"></div>
+            </div>
+        </div>
+        <div class="options-panel" id="settings-menu">
+            <div class=options-panel-top>
+                <div class="options-panel-icon"><i class="material-icons">settings</i></div>
+                <h1 class=options-panel-title>Settings.</h1><button class="options-panel-close-button"><i
+                        class="material-icons">close</i></button>
+            </div>
+            <div class="options-panel-content">
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Region</div>
+                    <select class="options-panel-option-input" id="region" required="">
+                        <option>North America</option>
+                        <option>South America</option>
+                        <option>Europe</option>
+                        <option>Russia</option>
+                        <option>Turkey</option>
+                        <option>East Asia</option>
+                        <option>China</option>
+                        <option>Oceania</option>
+                    </select>
+                    <select class="options-panel-option-input" id="region2" required="">
+                        <option value="wss://imsolo.pro:2109/">Arctida</option>
+                        <option value="wss://imsolo.pro:2104/">Rookery</option>
+                    </select>
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Game Mode</div><select class="options-panel-option-input"
+                        id="gamemode" required="">
+                        <option value=":party">Party</option>
+                        <option value=":ffa">FFA</option>
+                        <option value=":experimental">Experimental</option>
+                        <option value=":private">Private mode</option>
+                    </select>
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Zoom Speed</div><input class="options-panel-option-input"
+                        id="zoomSpeed" value="88" type="number" min="72" max="96" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Camera Speed</div><input class="options-panel-option-input"
+                        id="cameraSpeed" value="7" type="number" min="1" max="15" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Animation Speed</div><input
+                        class="options-panel-option-input" id="animationDelay" value="200" type="number" min="70"
+                        max="250" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Cell Suck Animation</div><input
+                        class="options-panel-option-switch" id="cellSuckAnimation" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Nick Text</div><input class="options-panel-option-switch"
+                        id="nickText" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Hide Own Nick</div><input class="options-panel-option-switch"
+                        id="hideOwnNick" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Mass Text</div><input class="options-panel-option-switch"
+                        id="massText" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Hide Own Mass</div><input class="options-panel-option-switch"
+                        id="hideOwnMass" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Custom Skins</div><input class="options-panel-option-switch"
+                        id="customSkins" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Vanilla Skins</div><input class="options-panel-option-switch"
+                        id="vanillaSkins" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Hide Food</div><input class="options-panel-option-switch"
+                        id="hideFood" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Food Glow</div><input class="options-panel-option-switch"
+                        id="foodGlow" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Virus Glow</div><input class="options-panel-option-switch"
+                        id="virusGlow" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Sectors</div><input class="options-panel-option-switch"
+                        id="sectors" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Audio Volume</div><input class="options-panel-option-input"
+                        id="audioVolume" value="30" type="number" min="1" max="100" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Audio Visualiser</div><input
+                        class="options-panel-option-switch" id="audioVisualiser" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Audio Visualiser URL</div><input
+                        class="options-panel-option-input" id="audioVisualiserURL" placeholder="URL...">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Background Image</div><input
+                        class="options-panel-option-switch" id="backgroundImage" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Border Glow</div><input class="options-panel-option-switch"
+                        id="borderGlow" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Rainbow Border</div><input
+                        class="options-panel-option-switch" id="rainbowBorder" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Multibox Rings</div><input
+                        class="options-panel-option-switch" id="multiboxRings" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Circle On Spawn</div><input
+                        class="options-panel-option-switch" id="circleOnSpawn" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Teammate Circle On Spawn</div><input
+                        class="options-panel-option-switch" id="teamCircleOnSpawn" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Minimap Ghostcells</div><input
+                        class="options-panel-option-switch" id="minimapGhostCells" type="checkbox">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Switch Logins</div><input class="options-panel-option-switch"
+                        id="switchLogins" type="checkbox">
+                </div>
+            </div>
+        </div>
+        <div class="options-panel" id="hotkeys-menu">
+            <div class=options-panel-top>
+                <div class="options-panel-icon"><i class="material-icons">keyboard</i></div>
+                <h1 class=options-panel-title>Hotkeys.</h1><button class="options-panel-close-button"><i
+                        class="material-icons">close</i></button>
+            </div>
+            <div class="options-panel-content">
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Multibox Switch</div><input
+                        class="options-panel-option-input" id="multiboxSwitch">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Toggle Menu</div><input class="options-panel-option-input"
+                        id="toggleMenu">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Split</div><input class="options-panel-option-input"
+                        id="split">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Eject</div><input class="options-panel-option-input"
+                        id="feed">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Macro Feed</div><input class="options-panel-option-input"
+                        id="macroFeed">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Double Split</div><input class="options-panel-option-input"
+                        id="doubleSplit">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">16x Split</div><input class="options-panel-option-input"
+                        id="maxSplit">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Free Spectate</div><input class="options-panel-option-input"
+                        id="freeSpectate">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Feed me!</div><input class="options-panel-option-input"
+                        id="command1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Split into me!</div><input class="options-panel-option-input"
+                        id="command2">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Need a teammate!</div><input
+                        class="options-panel-option-input" id="command3">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Tank the virus!</div><input
+                        class="options-panel-option-input" id="command4">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Tricksplit!</div><input class="options-panel-option-input"
+                        id="command5">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Zoom 1</div><input class="options-panel-option-input"
+                        id="zoom1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Zoom 2</div><input class="options-panel-option-input"
+                        id="zoom2">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Zoom 3</div><input class="options-panel-option-input"
+                        id="zoom3">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Zoom 4</div><input class="options-panel-option-input"
+                        id="zoom4">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Zoom 5</div><input class="options-panel-option-input"
+                        id="zoom5">
+                </div>
+            </div>
+        </div>
+        <div class="options-panel" id="theme-menu">
+            <div class=options-panel-top>
+                <div class="options-panel-icon"><i class="material-icons">opacity</i></div>
+                <h1 class=options-panel-title>Theme.</h1><button class="options-panel-close-button"><i
+                        class="material-icons">close</i></button>
+            </div>
+            <div class="options-panel-content">
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Background</div><input id="backgroundColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Background URL</div><input class="options-panel-option-input"
+                        id="backgroundImageURL">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Background Image</div><input id="backgroundImageColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Food</div><input id="foodColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Food Size</div><input class="options-panel-option-input"
+                        id="foodSize" value="2" type="number" min="0" max="15" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Food Glow</div><input id="foodGlowColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Food Glow Size</div><input class="options-panel-option-input"
+                        id="foodGlowSize" value="60" type="number" min="1" max="100" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Food Glow Strength</div><input
+                        class="options-panel-option-input" id="foodGlowStrength" value="10" type="number" min="1"
+                        max="10" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Virus</div><input id="virusColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Virus Opacity</div><input class="options-panel-option-input"
+                        id="virusOpacity" value="0.8" type="number" min="0" max="1" step="0.1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Virus Stroke</div><input id="virusStrokeColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Virus Stroke Size</div><input
+                        class="options-panel-option-input" id="virusStrokeSize" value="15" type="number" min="0"
+                        max="30" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Virus Glow</div><input id="virusGlowColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Virus Glow Size</div><input
+                        class="options-panel-option-input" id="virusGlowSize" value="100" type="number" min="1"
+                        max="100" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Virus Glow Strength</div><input
+                        class="options-panel-option-input" id="virusGlowStrength" value="5" type="number" min="1"
+                        max="10" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Border</div><input id="borderColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Border Width</div><input class="options-panel-option-input"
+                        id="borderWidth" value="30" type="number" min="1" max="130" step="5">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Border Glow </div><input id="borderGlowColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Border Glow Size</div><input
+                        class="options-panel-option-input" id="borderGlowSize" value="175" type="number" min="1"
+                        max="250" step="5">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Border Glow Strength</div><input
+                        class="options-panel-option-input" id="borderGlowStrength" value="5" type="number" min="1"
+                        max="10" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Sectors Font</div><input id="sectorFontColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Sectors Stroke</div><input id="sectorStrokeColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Visualiser 1</div><input id="visualiserColor1"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Visualiser 2</div><input id="visualiserColor2"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Audio Visualiser Size</div><input
+                        class="options-panel-option-input" id="audioVisualiserSize" value="8" type="number" min="1"
+                        max="12" step="0.5">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Player 1 Active</div><input id="player1ActiveColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Player 1 Inactive</div><input id="player1InactiveColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Player 2 Active</div><input id="player2ActiveColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Player 2 Inactive</div><input id="player2InactiveColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Multibox Ring Size</div><input
+                        class="options-panel-option-input" id="multiboxRingSize" value="0" type="number" min="0"
+                        max="360" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Player 1 Circle Hue</div><input
+                        class="options-panel-option-input" id="player1CircleHue" value="0" type="number" min="0"
+                        max="360" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Player 2 Circle Hue</div><input
+                        class="options-panel-option-input" id="player2CircleHue" value="135" type="number" min="0"
+                        max="360" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Teammate Circle Hue</div><input
+                        class="options-panel-option-input" id="teammateCircleHue" value="55" type="number" min="0"
+                        max="360" step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Minimap Self</div><input id="minimapSelfColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Minimap Teammate</div><input id="minimapTeammateColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Minimap Ghostcells</div><input id="minimapGhostCellsColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Minimap Viewport</div><input id="minimapViewportColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Menu BG Main</div><input id="menuBGMainColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Menu BG 1 Opacity</div><input
+                        class="options-panel-option-input" id="menuBG1Opacity" value="0.6" type="number" min="0" max="1"
+                        step="0.05">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Menu BG Second</div><input id="menuBGSecondColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Menu BG 2 Opacity</div><input
+                        class="options-panel-option-input" id="menuBG2Opacity" value="0.17" type="number" min="0"
+                        max="1" step="0.05">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Main Menu</div><input id="mainMenuColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Second Menu</div><input id="secondMenuColor"
+                        class="minicolors options-panel-option-input">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Menu Saturation</div><input
+                        class="options-panel-option-input" id="hudSaturation" value="2" type="number" min="0" max="5"
+                        step="1">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Menu Blur</div><input class="options-panel-option-input"
+                        id="hudBlur" value="0.45" type="number" min="0" max="2" step="0.05">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Menu Image URL</div><input class="options-panel-option-input"
+                        id="menuImageURL">
+                </div>
+                <div class="options-panel-option">
+                    <div class="options-panel-option-name">Menu Image Opacity</div><input
+                        class="options-panel-option-input" id="menuImageOpacity" value="0.2" type="number" min="0"
+                        max="1" step="0.05">
+                </div>
+            </div>
+        </div>
+        <div class="audio-player">
+            <div class="audio-buttons"><button class="audio-button" id="play-pause-button"><i
+                        class="material-icons">play_arrow</i></button><button class="audio-button" id="load-button"><i
+                        class="material-icons">insert_drive_file</i></button><button class="audio-button"
+                    id="load-url-button"><i class="material-icons">cloud_download</i></button></div>
+            <div class="audio-track">
+                <div class="track"></div>
+            </div>
+            <div id="audio-count">00:00</div>
+        </div><input id="audioInput" accept="audio/*" type="file">
+    </div>
+    <div id="chat"><input id="chat-input" placeholder="Chat.."><button id="send-button"><i
+                class="material-icons">send</i></button></div>
+    <div id="chat-messages"></div>
+    <div id="GODMODE"><button id="GODMODE-switch"><i class="material-icons">control_camera</i></button></div>
+    <div class="hud">
+        <div id="leaderboard">
+            <div id="leaderboard-positions"></div>
+        </div>
+        <div id="leadboard-player-location"></div>
+        <div id="minimap">
+            <div id="fps-count">
+                <div id="fps"></div>
+                <div id="fps-bar">
+                    <div id="fps-bar-content"></div>
+                </div>
+            </div><canvas id="minimap-nodes"></canvas>
+            <div id="minimap-sectors">
+                <div class="minimap-row">
+                    <div class="minimap-sector">A1</div>
+                    <div class="minimap-sector">A2</div>
+                    <div class="minimap-sector">A3</div>
+                    <div class="minimap-sector">A4</div>
+                    <div class="minimap-sector">A5</div>
+                </div>
+                <div class="minimap-row">
+                    <div class="minimap-sector">B1</div>
+                    <div class="minimap-sector">B2</div>
+                    <div class="minimap-sector">B3</div>
+                    <div class="minimap-sector">B4</div>
+                    <div class="minimap-sector">B5</div>
+                </div>
+                <div class="minimap-row">
+                    <div class="minimap-sector">C1</div>
+                    <div class="minimap-sector">C2</div>
+                    <div class="minimap-sector">C3</div>
+                    <div class="minimap-sector">C4</div>
+                    <div class="minimap-sector">C5</div>
+                </div>
+                <div class="minimap-row">
+                    <div class="minimap-sector">D1</div>
+                    <div class="minimap-sector">D2</div>
+                    <div class="minimap-sector">D3</div>
+                    <div class="minimap-sector">D4</div>
+                    <div class="minimap-sector">D5</div>
+                </div>
+                <div class="minimap-row">
+                    <div class="minimap-sector">E1</div>
+                    <div class="minimap-sector">E2</div>
+                    <div class="minimap-sector">E3</div>
+                    <div class="minimap-sector">E4</div>
+                    <div class="minimap-sector">E5</div>
+                </div>
+            </div>
+        </div>
+        <div id="team-players"></div>
+        <div class="player-stats">
+            <div id="players"><i class="material-icons">people</i>
+                <div class="stats-count" id="player-count">0</div>
+            </div>
+            <div id="mass"><i class="material-icons">donut_large</i>
+                <div class="stats-count" id="mass-count">0</div>
+            </div>
+            <div id="top-mass"><i class="material-icons">trip_origin</i>
+                <div class="stats-count" id="top-mass-count">0</div>
+            </div>
+            <div id="team-mass"><i class="material-icons">lens</i>
+                <div class="stats-count" id="team-mass-count">0</div>
+            </div>
+            <div id="time"><i class="material-icons">hourglass_full</i>
+                <div class="stats-count" id="time-count">0</div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script charset="UTF-8" src="bundle.js"></script>
+</body>
+
+</html>

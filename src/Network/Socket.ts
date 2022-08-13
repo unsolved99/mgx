@@ -21,6 +21,7 @@ export class Socket extends EventEmitter {
 	public encryptionKey: number;
 	public decryptionKey: number;
 	public clientVersionInt: number;
+	private pingLoop: NodeJS.Timeout;
 
 	public constructor(clientVersionInt: number) {
 		super();
@@ -54,13 +55,18 @@ export class Socket extends EventEmitter {
 		return new Promise((resolve: () => void, reject: (err: string) => void) => {
 			this.webSocket = new WebSocket(this.url = url);
 			this.webSocket.binaryType = "arraybuffer";
-
-			this.webSocket.addEventListener("open", resolve);
+			this.webSocket.addEventListener("open", () => {
+				const ping = new Uint8Array([254]);
+				this.pingLoop = setInterval(() => this.webSocket.send(ping), 500);
+				resolve();
+			});
+			//this.webSocket.addEventListener("open", resolve);
 			this.webSocket.addEventListener("message", (event: MessageEvent) => this.onMessage(event.data));
 			this.webSocket.addEventListener("close", (reason) => {
 				this.emit("close");
 				this.disconnect();
 				console.log(reason);
+				clearInterval(this.pingLoop);
 			});
 			this.webSocket.addEventListener("error", () => {
 				reject(`Failed to connect to ${this.url}`);
@@ -77,6 +83,7 @@ export class Socket extends EventEmitter {
 			view = Socket.xorMessageBytes(view, this.decryptionKey ^ this.clientVersionInt);
 		}
 		this.emit("message", view.buffer);
+
 	}
 
 	public disconnect(): void {

@@ -23,8 +23,8 @@ export class Login {
 	}
 
 	public sendTab1() {
-		const cli = this.master.mgxn3bx.clients.get(Client.Type.PLAYER_1);
-		const info = this.master.mgxn3bx.info;
+		const cli = this.master.app.clients.get(Client.Type.PLAYER_1);
+		const info = this.master.app.info;
 		switch (this.sides.tab1) {
 			case "google":
 				if (this.google.loggedIn) { PacketEncoder.login(cli, this.google.token, info, 4); }
@@ -36,8 +36,8 @@ export class Login {
 		}
 	}
 	public sendTab2() {
-		const cli = this.master.mgxn3bx.clients.get(Client.Type.PLAYER_2);
-		const info = this.master.mgxn3bx.info;
+		const cli = this.master.app.clients.get(Client.Type.PLAYER_2);
+		const info = this.master.app.info;
 		switch (this.sides.tab2) {
 			case "google":
 				if (this.google.loggedIn) { PacketEncoder.login(cli, this.google.token, info, 4); }

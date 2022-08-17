@@ -55,11 +55,11 @@ export class Profiles {
 		$("#skin-img-2").attr("src", profile.skin2);
 		Storage.set("profile" + n, profile, Profiles.group);
 		Storage.set("selected", String(n), Profiles.group);
-		this.menu.mgxn3bx.game.ogario.setTag(profile.tag);
-		this.menu.mgxn3bx.game.ogario.setNick(profile.nick1, Client.Type.PLAYER_1);
-		this.menu.mgxn3bx.game.ogario.setNick(profile.nick2, Client.Type.PLAYER_2);
-		this.menu.mgxn3bx.game.ogario.setSkin(profile.skin1, Client.Type.PLAYER_1);
-		this.menu.mgxn3bx.game.ogario.setSkin(profile.skin2, Client.Type.PLAYER_2);
+		this.menu.app.game.ogario.setTag(profile.tag);
+		this.menu.app.game.ogario.setNick(profile.nick1, Client.Type.PLAYER_1);
+		this.menu.app.game.ogario.setNick(profile.nick2, Client.Type.PLAYER_2);
+		this.menu.app.game.ogario.setSkin(profile.skin1, Client.Type.PLAYER_1);
+		this.menu.app.game.ogario.setSkin(profile.skin2, Client.Type.PLAYER_2);
 	}
 
 	public setNick1(nick: string) {
@@ -67,9 +67,9 @@ export class Profiles {
 		profile || (profile = Profiles.getDefault(this.currentProfile));
 		profile.nick1 = nick;
 		Storage.set("profile" + this.currentProfile, profile, Profiles.group);
-		this.menu.mgxn3bx.game.ogario.setNick(nick, Client.Type.PLAYER_1);
-		if (this.menu.mgxn3bx.clients.has(Client.Type.PLAYER_1)) {
-			this.menu.mgxn3bx.clients.get(Client.Type.PLAYER_1).world.player.nick = nick;
+		this.menu.app.game.ogario.setNick(nick, Client.Type.PLAYER_1);
+		if (this.menu.app.clients.has(Client.Type.PLAYER_1)) {
+			this.menu.app.clients.get(Client.Type.PLAYER_1).world.player.nick = nick;
 		}
 	}
 
@@ -78,9 +78,9 @@ export class Profiles {
 		profile || (profile = Profiles.getDefault(this.currentProfile));
 		profile.nick2 = nick;
 		Storage.set("profile" + this.currentProfile, profile, Profiles.group);
-		this.menu.mgxn3bx.game.ogario.setNick(nick, Client.Type.PLAYER_2);
-		if (this.menu.mgxn3bx.clients.has(Client.Type.PLAYER_2)) {
-			this.menu.mgxn3bx.clients.get(Client.Type.PLAYER_2).world.player.nick = nick;
+		this.menu.app.game.ogario.setNick(nick, Client.Type.PLAYER_2);
+		if (this.menu.app.clients.has(Client.Type.PLAYER_2)) {
+			this.menu.app.clients.get(Client.Type.PLAYER_2).world.player.nick = nick;
 		}
 	}
 
@@ -89,9 +89,9 @@ export class Profiles {
 		profile || (profile = Profiles.getDefault(this.currentProfile));
 		profile.skin1 = skin;
 		Storage.set("profile" + this.currentProfile, profile, Profiles.group);
-		this.menu.mgxn3bx.game.ogario.setSkin(skin, Client.Type.PLAYER_1);
-		if (this.menu.mgxn3bx.clients.has(Client.Type.PLAYER_1)) {
-			this.menu.mgxn3bx.clients.get(Client.Type.PLAYER_1).world.player.skin = skin;
+		this.menu.app.game.ogario.setSkin(skin, Client.Type.PLAYER_1);
+		if (this.menu.app.clients.has(Client.Type.PLAYER_1)) {
+			this.menu.app.clients.get(Client.Type.PLAYER_1).world.player.skin = skin;
 		}
 	}
 
@@ -100,9 +100,9 @@ export class Profiles {
 		profile || (profile = Profiles.getDefault(this.currentProfile));
 		profile.skin2 = skin;
 		Storage.set("profile" + this.currentProfile, profile, Profiles.group);
-		this.menu.mgxn3bx.game.ogario.setSkin(skin, Client.Type.PLAYER_2);
-		if (this.menu.mgxn3bx.clients.has(Client.Type.PLAYER_2)) {
-			this.menu.mgxn3bx.clients.get(Client.Type.PLAYER_2).world.player.skin = skin;
+		this.menu.app.game.ogario.setSkin(skin, Client.Type.PLAYER_2);
+		if (this.menu.app.clients.has(Client.Type.PLAYER_2)) {
+			this.menu.app.clients.get(Client.Type.PLAYER_2).world.player.skin = skin;
 		}
 	}
 
@@ -111,7 +111,7 @@ export class Profiles {
 		profile || (profile = Profiles.getDefault(this.currentProfile));
 		profile.tag = tag;
 		Storage.set("profile" + this.currentProfile, profile, Profiles.group);
-		this.menu.mgxn3bx.game.ogario.setTag(tag);
+		this.menu.app.game.ogario.setTag(tag);
 	}
 
 }

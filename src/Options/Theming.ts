@@ -1,6 +1,6 @@
 declare var $: any;
 
-import { MGxN3Bx } from "../Init";
+import { application } from "../Init";
 import { Defaults } from "../Utils/Defaults";
 import { Storage } from "../Utils/Storage";
 import { Options } from "./Options";
@@ -101,27 +101,27 @@ export class Theming {
 			case "virusColor":
 			case "virusStrokeColor":
 			case "virusGlowColor":
-				this.mgxn3bx.renderer.sprites.virus.createtexture(this.mgxn3bx);
-				this.mgxn3bx.renderer.virusColorChange();
+				this.app.renderer.sprites.virus.createtexture(this.app);
+				this.app.renderer.virusColorChange();
 				break;
 			case "foodColor":
 			case "foodGlowColor":
-				this.mgxn3bx.renderer.sprites.food.createtexture(this.mgxn3bx);
-				this.mgxn3bx.renderer.foodColorChange();
+				this.app.renderer.sprites.food.createtexture(this.app);
+				this.app.renderer.foodColorChange();
 				break;
 			case "borderColor":
 			case "borderGlowColor":
-				this.mgxn3bx.renderer.sprites.border.createTexture(this.mgxn3bx);
-				this.mgxn3bx.renderer.drawBorder();
+				this.app.renderer.sprites.border.createTexture(this.app);
+				this.app.renderer.drawBorder();
 				break;
 			case "sectorStrokeColor":
 			case "sectorFontColor":
-				this.mgxn3bx.renderer.sprites.sectors.init(this.mgxn3bx);
-				this.mgxn3bx.renderer.drawSectors();
+				this.app.renderer.sprites.sectors.init(this.app);
+				this.app.renderer.drawSectors();
 				break;
 			case "backgroundImageColor":
-				if (this.mgxn3bx.renderer.spriteCache.backgroundImage instanceof PIXI.Sprite) {
-					this.mgxn3bx.renderer.spriteCache.backgroundImage.tint = PIXI.utils.string2hex(this.obj.backgroundImageColor);
+				if (this.app.renderer.spriteCache.backgroundImage instanceof PIXI.Sprite) {
+					this.app.renderer.spriteCache.backgroundImage.tint = PIXI.utils.string2hex(this.obj.backgroundImageColor);
 				}
 				break;
 			case "mainMenuColor":
@@ -164,8 +164,8 @@ export class Theming {
 		document.documentElement.style.setProperty("--second-bg-color", color2);
 	}
 
-	private get mgxn3bx(): MGxN3Bx {
-		return this.options.mgxn3bx;
+	private get app(): application {
+		return this.options.app;
 	}
 
 }

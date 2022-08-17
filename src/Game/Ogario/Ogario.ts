@@ -23,11 +23,11 @@ export class Ogario {
 	}
 
 	public setValues() {
-		this.setTag(this.game.mgxn3bx.menu.profiles.getTag());
-		this.setNick(this.game.mgxn3bx.menu.profiles.get("nick1"), Client.Type.PLAYER_1);
-		this.setNick(this.game.mgxn3bx.menu.profiles.get("nick2"), Client.Type.PLAYER_2);
-		this.setSkin(this.game.mgxn3bx.menu.profiles.get("skin1"), Client.Type.PLAYER_1);
-		this.setSkin(this.game.mgxn3bx.menu.profiles.get("skin2"), Client.Type.PLAYER_2);
+		this.setTag(this.game.app.menu.profiles.getTag());
+		this.setNick(this.game.app.menu.profiles.get("nick1"), Client.Type.PLAYER_1);
+		this.setNick(this.game.app.menu.profiles.get("nick2"), Client.Type.PLAYER_2);
+		this.setSkin(this.game.app.menu.profiles.get("skin1"), Client.Type.PLAYER_1);
+		this.setSkin(this.game.app.menu.profiles.get("skin2"), Client.Type.PLAYER_2);
 	}
 
 	public sendChat(message: string, type: number = 101) {

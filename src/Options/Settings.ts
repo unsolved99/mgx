@@ -1,6 +1,6 @@
 declare var $: any;
 
-import { MGxN3Bx } from "../Init";
+import { application } from "../Init";
 import { Defaults } from "../Utils/Defaults";
 import { Storage } from "../Utils/Storage";
 
@@ -8,10 +8,10 @@ export class Settings {
 
 	public obj: Settings.Obj;
 	private storageGroup: Storage.Group = "settings";
-	private mgxn3bx: MGxN3Bx;
+	private app: application;
 
-	public constructor(mgxn3bx: MGxN3Bx) {
-		this.mgxn3bx = mgxn3bx;
+	public constructor(app: application) {
+		this.app = app;
 		this.obj = {
 			cellSuckAnimation: this.get("cellSuckAnimation"),
 			nickText: this.get("nickText"),
@@ -69,47 +69,47 @@ export class Settings {
 	private onChange(option: string) {
 		switch (option) {
 			case "massText":
-				this.mgxn3bx.renderer.massChange();
+				this.app.renderer.massChange();
 				break;
 			case "nickText":
-				this.mgxn3bx.renderer.nickChange();
+				this.app.renderer.nickChange();
 				break;
 			case "switchLogins":
 				this.handleSwitch();
 				break;
 			case "sectors":
-				this.mgxn3bx.renderer.toggleSectors(this.obj[option]);
+				this.app.renderer.toggleSectors(this.obj[option]);
 				break;
 			case "rainbowBorder":
-				this.mgxn3bx.renderer.drawRainbow();
+				this.app.renderer.drawRainbow();
 				if (this.obj.borderGlow) {
-					this.mgxn3bx.renderer.sprites.border.createTexture(this.mgxn3bx);
-					this.mgxn3bx.renderer.drawBorder();
+					this.app.renderer.sprites.border.createTexture(this.app);
+					this.app.renderer.drawBorder();
 				}
-				this.mgxn3bx.renderer.statics.sortChildren();
+				this.app.renderer.statics.sortChildren();
 				break;
 			case "borderGlow":
-				this.mgxn3bx.renderer.sprites.border.createTexture(this.mgxn3bx);
-				this.mgxn3bx.renderer.drawBorder();
+				this.app.renderer.sprites.border.createTexture(this.app);
+				this.app.renderer.drawBorder();
 				break;
 			case "backgroundImage":
-				this.mgxn3bx.renderer.drawBackgroundImage();
-				this.mgxn3bx.renderer.statics.sortChildren();
+				this.app.renderer.drawBackgroundImage();
+				this.app.renderer.statics.sortChildren();
 				break;
 			case "hideFood":
 			case "foodGlow":
-				this.mgxn3bx.renderer.sprites.food.createtexture(this.mgxn3bx);
-				this.mgxn3bx.renderer.foodColorChange();
+				this.app.renderer.sprites.food.createtexture(this.app);
+				this.app.renderer.foodColorChange();
 				break;
 			case "virusGlow":
-				this.mgxn3bx.renderer.sprites.virus.createtexture(this.mgxn3bx);
-				this.mgxn3bx.renderer.virusColorChange();
+				this.app.renderer.sprites.virus.createtexture(this.app);
+				this.app.renderer.virusColorChange();
 				break;
 			case "menuImageURL":
 				this.setMenuImage();
 				break;
 			case "multiboxRings":
-				this.mgxn3bx.renderer.ringChange();
+				this.app.renderer.ringChange();
 				break;
 			default:
 				break;
@@ -139,14 +139,14 @@ export class Settings {
 		if (this.obj.switchLogins === true) {
 			gp.detach().prependTo("#skin-1");
 			fb.detach().prependTo("#skin-2");
-			if (this.mgxn3bx.master.login.sides.tab1 !== "google") { this.mgxn3bx.master.login.swapSides(); }
+			if (this.app.master.login.sides.tab1 !== "google") { this.app.master.login.swapSides(); }
 		} else if (this.obj.switchLogins === false) {
 			gp.detach().prependTo("#skin-2");
 			fb.detach().prependTo("#skin-1");
-			if (this.mgxn3bx.master.login.sides.tab1 !== "facebook") { this.mgxn3bx.master.login.swapSides(); }
+			if (this.app.master.login.sides.tab1 !== "facebook") { this.app.master.login.swapSides(); }
 		}
-		if (this.mgxn3bx.url) {
-			this.mgxn3bx.connect(this.mgxn3bx.url);
+		if (this.app.url) {
+			this.app.connect(this.app.url);
 		}
 	}
 

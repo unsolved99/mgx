@@ -83,7 +83,7 @@ export class Facebook {
 	}
 
 	private get mgxn3bx() {
-		return this.loginParent.master.mgxn3bx;
+		return this.loginParent.master.app;
 	}
 
 }

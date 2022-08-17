@@ -1,4 +1,4 @@
-import { MGxN3Bx } from "../Init";
+import { application } from "../Init";
 import { Request } from "../Master/Request";
 import { Events } from "./Events";
 import { Profiles } from "./Profiles";
@@ -55,15 +55,15 @@ export class Menu {
 		$("#chat-room").fadeOut(450);
 	}
 
-	public mgxn3bx: MGxN3Bx;
+	public app: application;
 	public updateInterval: NodeJS.Timeout;
 	public topTeam: TopTeam;
 	public profiles: Profiles;
 	private stats: Stats;
 	private events: Events;
 
-	public constructor(mgxn3bx: MGxN3Bx) {
-		this.mgxn3bx = mgxn3bx;
+	public constructor(app: application) {
+		this.app = app;
 		this.events = new Events(this);
 		this.stats = new Stats(this);
 		this.topTeam = new TopTeam(this);
@@ -89,7 +89,7 @@ export class Menu {
 	}
 
 	private async regions(): Promise<void> {
-		const serverInfo = await Request.getRegionsInfo(this.mgxn3bx.info);
+		const serverInfo = await Request.getRegionsInfo(this.app.info);
 		const regions = serverInfo.regions;
 		let options = "";
 		const newNames: any = { "EU-London": "Europe", "US-Atlanta": "North America", "BR-Brazil": "South America", "RU-Russia": "Russia", "TK-Turkey": "Turkey", "JP-Tokyo": "East Asia", "CN-China": "China", "SG-Singapore": "Oceania" };
@@ -100,14 +100,14 @@ export class Menu {
 	}
 
 	private updateFPS() {
-		const barWidth = 100 / this.mgxn3bx.loop.maxFps * this.mgxn3bx.renderer.loop.fps;
+		const barWidth = 100 / this.app.loop.maxFps * this.app.renderer.loop.fps;
 		const barWidthFixed = Math.min(100, Math.max(0, barWidth));
-		$("#fps").text(this.mgxn3bx.renderer.loop.fps);
+		$("#fps").text(this.app.renderer.loop.fps);
 		$("#fps-bar-content").css("width", barWidthFixed + "%");
 	}
 
 	private updatePlayer() {
-		const audio = this.mgxn3bx.renderer.spectrum.audio;
+		const audio = this.app.renderer.spectrum.audio;
 		const barWidth = 100 / audio.duration * audio.currentTime;
 		const barWidthFixed = Math.min(100, Math.max(0, barWidth));
 		$(".track").css("width", barWidthFixed + "%");

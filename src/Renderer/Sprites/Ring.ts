@@ -1,16 +1,16 @@
 import * as PIXI from "pixi.js";
-import { MGxN3Bx } from "../../Init";
+import { application } from "../../Init";
 
 export class Ring {
 
 	public canvas: HTMLCanvasElement;
 	public texture: PIXI.Texture;
 
-	public init(mgxn3bx: MGxN3Bx) {
-		this.createTexture(mgxn3bx);
+	public init(app: application) {
+		this.createTexture(app);
 	}
 
-	private createTexture(mgxn3bx: MGxN3Bx): void {
+	private createTexture(app: application): void {
 		if (this.canvas === undefined) {
 			this.canvas = document.createElement("canvas");
 		} else {
@@ -24,7 +24,7 @@ export class Ring {
 		const ctx = this.canvas.getContext("2d");
 		ctx.globalAlpha = 1;
 		ctx.strokeStyle = "#fff";
-		const lw = cellSize * mgxn3bx.options.sliders.obj.multiboxRingSize / 10;
+		const lw = cellSize * app.options.sliders.obj.multiboxRingSize / 10;
 		ctx.lineWidth = lw;
 		ctx.beginPath();
 		ctx.arc(ctx.canvas.width / 2, ctx.canvas.height / 2, cellSize - lw / 2, 0, Math.PI * 2, !0);

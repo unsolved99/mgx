@@ -1,4 +1,4 @@
-import { MGxN3Bx } from "../Init";
+import { application } from "../Init";
 import { Camera } from "./Camera";
 import { Controller } from "./Controller";
 import { FullMap } from "./FullMap";
@@ -9,7 +9,7 @@ import { Ogario } from "./Ogario/Ogario";
 
 export class Game {
 
-	public mgxn3bx: MGxN3Bx;
+	public app: application;
 	public camera: Camera;
 	public mouse: Mouse;
 	public controller: Controller;
@@ -18,8 +18,8 @@ export class Game {
 	public multibox: Multibox;
 	public fullMap: FullMap;
 
-	public constructor(mgxn3bx: MGxN3Bx) {
-		this.mgxn3bx = mgxn3bx;
+	public constructor(app: application) {
+		this.app = app;
 		this.hotKeys = new HotKeys(this);
 		this.camera = new Camera(this);
 		this.mouse = new Mouse(this);

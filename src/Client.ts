@@ -1,4 +1,4 @@
-import { MGxN3Bx } from "./Init";
+import { application } from "./Init";
 import { Socket } from "./Network/Socket";
 import { World } from "./World/World";
 
@@ -8,7 +8,7 @@ export class Client {
 	public readonly socket: Socket;
 	public readonly world: World;
 
-	public constructor(type: Client.Type, socket: Socket, public mgxn3bx: MGxN3Bx) {
+	public constructor(type: Client.Type, socket: Socket, public app: application) {
 		this.type = type;
 		this.socket = socket;
 		this.world = new World(type);

@@ -1,5 +1,5 @@
 import { Client } from "../Client";
-import { MGxN3Bx } from "../Init";
+import { application } from "../Init";
 import { Cell } from "../World/Cell/Cell";
 
 export class Viewport {
@@ -27,10 +27,10 @@ export class Viewport {
 
 	}
 
-	public static checkViewport(cell: Cell, mgxn3bx: MGxN3Bx): boolean {
-		const cli = mgxn3bx.clients.get(Client.Type.PLAYER_1);
-		const cli2 = mgxn3bx.clients.get(Client.Type.PLAYER_2);
-		const spectate = mgxn3bx.clients.get(Client.Type.SPECTATE);
+	public static checkViewport(cell: Cell, app: application): boolean {
+		const cli = app.clients.get(Client.Type.PLAYER_1);
+		const cli2 = app.clients.get(Client.Type.PLAYER_2);
+		const spectate = app.clients.get(Client.Type.SPECTATE);
 		let visible = true;
 		if (cell.client.type !== Client.Type.PLAYER_1 && cell.client.type !== Client.Type.PLAYER_2 && cell.client.type !== Client.Type.SPECTATE) {
 			if (this.isInRectangle(cell, cli.world.viewBounds)) { visible = false; }

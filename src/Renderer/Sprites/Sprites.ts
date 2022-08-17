@@ -35,12 +35,12 @@ export class Sprites {
 	}
 	public init() {
 		this.eject.init();
-		this.food.init(this.renderer.mgxn3bx);
+		this.food.init(this.renderer.App);
 		this.player.init();
-		this.sectors.init(this.renderer.mgxn3bx);
-		this.virus.init(this.renderer.mgxn3bx);
-		this.border.init(this.renderer.mgxn3bx);
-		this.ring.init(this.renderer.mgxn3bx);
+		this.sectors.init(this.renderer.App);
+		this.virus.init(this.renderer.App);
+		this.border.init(this.renderer.App);
+		this.ring.init(this.renderer.App);
 	}
 	public getSkin(url: string): any {
 		return this.skin.get(url);

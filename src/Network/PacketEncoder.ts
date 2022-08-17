@@ -52,7 +52,8 @@ export class PacketEncoder {
 		}
 
 		if (gamemode === ":private") {
-			buf.writeUInt32(23);
+			buf.writeUInt32(22);
+			console.log("[Private mode] Switching to protocol 22");
 		}
 		//
 		
@@ -61,6 +62,7 @@ export class PacketEncoder {
 		buf.writeUInt8(255);
 		buf.writeUInt32(info.clientVersionInt);
 		client.socket.send(buf.dataView.buffer);
+		
 	}
 
 	public static sendMouseMove(client: Client, x: number, y: number) {

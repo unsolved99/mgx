@@ -1,13 +1,13 @@
-import { MGxN3Bx } from "../Init";
+import { application } from "../Init";
 import { Login } from "./Login/Login";
 
 export class Master {
 
-	public mgxn3bx: MGxN3Bx;
+	public app: application;
 	public login: Login;
 
-	public constructor(mgxn3bx: MGxN3Bx) {
-		this.mgxn3bx = mgxn3bx;
+	public constructor(app: application) {
+		this.app = app;
 		this.login = new Login(this);
 	}
 

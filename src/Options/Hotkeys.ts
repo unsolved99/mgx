@@ -1,7 +1,7 @@
 declare var $: any;
 
 import { HotKeys as HotKeysHandler } from "../Game/HotKeys";
-import { MGxN3Bx } from "../Init";
+import { application } from "../Init";
 import { Defaults } from "../Utils/Defaults";
 import { Storage } from "../Utils/Storage";
 
@@ -9,10 +9,10 @@ export class HotKeys {
 
 	public obj: HotKeys.Obj;
 	private storageGroup: Storage.Group = "hotkeys";
-	private mgxn3bx: MGxN3Bx;
+	private app: application;
 
-	public constructor(mgxn3bx: MGxN3Bx) {
-		this.mgxn3bx = mgxn3bx;
+	public constructor(app: application) {
+		this.app = app;
 		this.obj = {
 			feed: this.get("feed"),
 			macroFeed: this.get("macroFeed"),

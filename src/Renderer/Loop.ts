@@ -20,13 +20,13 @@ export class Loop {
 		this.calcFrame();
 		this.setViewport();
 		this.renderer.spectrum.clear();
-		if (this.renderer.mgxn3bx.options.settings.obj.audioVisualiser === true) {
+		if (this.renderer.App.options.settings.obj.audioVisualiser === true) {
 			this.renderer.spectrum.render();
 		}
 		Cells.draw(this.renderer);
 		this.renderer.cells.sortChildren();
 		if (this.renderer.rainbowContainer) {
-			this.renderer.hueCounter += this.renderer.mgxn3bx.options.sliders.obj.rainbowBorderSpeed;
+			this.renderer.hueCounter += this.renderer.App.options.sliders.obj.rainbowBorderSpeed;
 			this.renderer.hueCounter >= 360 ? this.renderer.hueCounter = 0 : void (0);
 
 			this.renderer.colorMatrix.hue(this.renderer.hueCounter, false);
@@ -36,13 +36,13 @@ export class Loop {
 
 	private setViewport() {
 		this.renderer.world.position.set(this.renderer.engine.width / 2, this.renderer.engine.height / 2);
-		const client = this.renderer.mgxn3bx.clients.get(Client.Type.PLAYER_1);
+		const client = this.renderer.App.clients.get(Client.Type.PLAYER_1);
 		if (client && client.world.center) {
 			this.renderer.spectrum.x = client.world.center.x;
 			this.renderer.spectrum.y = client.world.center.y;
 		}
-		this.renderer.world.pivot.set(this.renderer.mgxn3bx.game.camera.x, this.renderer.mgxn3bx.game.camera.y);
-		this.renderer.world.scale.set(this.renderer.mgxn3bx.game.camera.viewport);
+		this.renderer.world.pivot.set(this.renderer.App.game.camera.x, this.renderer.App.game.camera.y);
+		this.renderer.world.scale.set(this.renderer.App.game.camera.viewport);
 
 	}
 

@@ -31,9 +31,9 @@ export class Minimap {
 	}
 
 	private drawTeamPlayers() {
-		const color = this.renderer.mgxn3bx.options.theming.obj.minimapTeammateColor;
+		const color = this.renderer.App.options.theming.obj.minimapTeammateColor;
 		const ctx = this.ctx;
-		const ogario = this.renderer.mgxn3bx.game.ogario;
+		const ogario = this.renderer.App.game.ogario;
 		ogario.mainSocket.teamPlayers.forEach((player) => {
 			if (player.alive) {
 				player.update();
@@ -56,10 +56,10 @@ export class Minimap {
 	}
 
 	private drawGhostCells() {
-		const color = this.renderer.mgxn3bx.options.theming.obj.minimapGhostCellsColor;
+		const color = this.renderer.App.options.theming.obj.minimapGhostCellsColor;
 		const ctx = this.ctx;
-		const client = this.renderer.mgxn3bx.clients.get(Client.Type.PLAYER_1);
-		if (this.renderer.mgxn3bx.options.settings.obj.minimapGhostCells) {
+		const client = this.renderer.App.clients.get(Client.Type.PLAYER_1);
+		if (this.renderer.App.options.settings.obj.minimapGhostCells) {
 		if (client && client.world.ghostCells.size > 0) {
 			client.world.ghostCells.forEach((ghostCell) => {
 				ctx.beginPath();
@@ -77,10 +77,10 @@ export class Minimap {
 	}
 
 	private drawPlayer() {
-		const color = this.renderer.mgxn3bx.options.theming.obj.minimapSelfColor;
+		const color = this.renderer.App.options.theming.obj.minimapSelfColor;
 		const ctx = this.ctx;
-		const client = this.renderer.mgxn3bx.clients.get(Client.Type.PLAYER_1);
-		const camera = this.renderer.mgxn3bx.game.camera;
+		const client = this.renderer.App.clients.get(Client.Type.PLAYER_1);
+		const camera = this.renderer.App.game.camera;
 		if (client) {
 			const player = client.world.player;
 			const offsetX = client.world.offset ? client.world.offset.x : 0;
@@ -100,8 +100,8 @@ export class Minimap {
 
 	private drawView() {
 
-		const client = this.renderer.mgxn3bx.clients.get(Client.Type.PLAYER_1);
-		const viewBounds = this.renderer.mgxn3bx.game.camera.viewBounds;
+		const client = this.renderer.App.clients.get(Client.Type.PLAYER_1);
+		const viewBounds = this.renderer.App.game.camera.viewBounds;
 		const offsetX = client && client.world.offset ? client.world.offset.x : 0;
 		const offsetY = client && client.world.offset ? client.world.offset.y : 0;
 
@@ -115,7 +115,7 @@ export class Minimap {
 	}
 
 	private drawRect(left: number, top: number, right: number, bottom: number) {
-		const color = this.renderer.mgxn3bx.options.theming.obj.minimapViewportColor;
+		const color = this.renderer.App.options.theming.obj.minimapViewportColor;
 		const width = (right - left) | 0;
 		const height = (bottom - top) | 0;
 		const ctx = this.ctx;

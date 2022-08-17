@@ -80,14 +80,14 @@ export class Cell {
 		skin = skin.replace("%", "skin_");
 		let url = "";
 		if (skin.includes("custom") && !skin.includes("level")) {
-			url = `${this.client.mgxn3bx.info.EnvConfig.custom_skins_url}${skin}.png`;
+			url = `${this.client.app.info.EnvConfig.custom_skins_url}${skin}.png`;
 		} else if (!skin.includes("custom") && !skin.includes("level")) {
-			url = this.client.mgxn3bx.info.skins.get(skin).url;
+			url = this.client.app.info.skins.get(skin).url;
 		}
 		if (url !== "") {
 			this.skin = url;
 		}
-		this.client.mgxn3bx.options.settings.obj.vanillaSkins ? this.client.mgxn3bx.renderer.sprites.skin.get(url) : void (0);
+		this.client.app.options.settings.obj.vanillaSkins ? this.client.app.renderer.sprites.skin.get(url) : void (0);
 	}
 
 	public setColor(r: number, g: number, b: number) {
@@ -110,12 +110,12 @@ export class Cell {
 
 	public setNick(nick: string) {
 		this.nick = nick;
-		this.client.mgxn3bx.options.settings.obj.nickText ? this.cellRender.nickText = NickCache.get(nick, this.client.mgxn3bx.renderer.app) : void (0);
+		this.client.app.options.settings.obj.nickText ? this.cellRender.nickText = NickCache.get(nick, this.client.app.renderer.app) : void (0);
 	}
 
 	public animate(): void {
-		const loop = this.client.mgxn3bx.renderer.loop;
-		let animationDelay = (loop.lastFrameTime - this.lastUpdateTime) / this.client.mgxn3bx.options.sliders.obj.animationDelay;
+		const loop = this.client.app.renderer.loop;
+		let animationDelay = (loop.lastFrameTime - this.lastUpdateTime) / this.client.app.options.sliders.obj.animationDelay;
 		animationDelay = animationDelay < 0 ? 0 : animationDelay > 1 ? 1 : animationDelay;
 		this.animX = animationDelay * (this.x - this.animX) + this.animX;
 		this.animY = animationDelay * (this.y - this.animY) + this.animY;
@@ -127,7 +127,7 @@ export class Cell {
 	public get isTeam(): boolean {
 		let isTeam = false;
 
-		this.client.mgxn3bx.game.ogario.mainSocket.teamPlayers.forEach((player) => {
+		this.client.app.game.ogario.mainSocket.teamPlayers.forEach((player) => {
 			if (player.nick === this.nick && player.color.cell === this.color.hex) {
 				isTeam = true;
 				this.customSkin = player.skin;

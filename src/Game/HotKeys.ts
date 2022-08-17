@@ -21,7 +21,7 @@ export class HotKeys {
 	}
 
 	private onKeyUp(e: KeyboardEvent) {
-		const hkObj = this.game.mgxn3bx.options.hotkeys.obj;
+		const hkObj = this.game.app.options.hotkeys.obj;
 		if (this.activeKeys.has(e.keyCode)) {
 			const key = HotKeys.getKey(e);
 			switch (key) {
@@ -34,7 +34,7 @@ export class HotKeys {
 	}
 
 	private onKeyDown(e: KeyboardEvent) {
-		const hkObj = this.game.mgxn3bx.options.hotkeys.obj;
+		const hkObj = this.game.app.options.hotkeys.obj;
 		const key = HotKeys.getKey(e);
 		if (key !== "" && !this.activeKeys.has(e.keyCode)) {
 			if ($("input").is(":focus") && key !== hkObj.chatInput) {
@@ -46,7 +46,7 @@ export class HotKeys {
 						Menu.showMenu();
 					} else if (!Menu.hidden) {
 						Menu.hideMenu();
-						this.game.ogario.joinServer(this.game.mgxn3bx.serverToken, String($("#party").val()));
+						this.game.ogario.joinServer(this.game.app.serverToken, String($("#party").val()));
 					}
 					break;
 				case hkObj.chatInput:
@@ -89,13 +89,13 @@ export class HotKeys {
 					this.setZoom(0.05);
 					break;
 			}
-			const cli = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_1);
-			const cli2 = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_2);
+			const cli = this.game.app.clients.get(Client.Type.PLAYER_1);
+			const cli2 = this.game.app.clients.get(Client.Type.PLAYER_2);
 			if (cli || cli2) {
 				if (cli.world.player.state === Player.State.SPECTATING) {
 					switch (key) {
 						case hkObj.freeSpectate:
-							PacketEncoder.sendFreeSpectate(this.game.mgxn3bx.clients.get(Client.Type.PLAYER_1));
+							PacketEncoder.sendFreeSpectate(this.game.app.clients.get(Client.Type.PLAYER_1));
 							break;
 					}
 				} else if (cli.world.player.state === Player.State.ALIVE || cli2.world.player.state === Player.State.ALIVE) {

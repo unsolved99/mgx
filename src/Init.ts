@@ -1,6 +1,7 @@
 declare var $: any;
 
-import * as PIXI from 'pixi.js';
+import * as 
+PIXI from 'pixi.js';
 import { Client } from "./Client";
 import { Game } from "./Game/Game";
 import { AutoUpdate } from "./Master/AutoUpdate";
@@ -18,11 +19,11 @@ import { Recaptcha } from "./Utils/Recaptcha";
 import { Player } from "./World/Player";
 
 AutoUpdate.checkCache().then((info: AutoUpdate.Info) => {
-	(window as any).MGxN3Bx = new MGxN3Bx(info);
-	(window as any).PIXI = PIXI;
+	(window as any).application = new application(info);
+	
 });
-
-export class MGxN3Bx {
+window.PIXI = PIXI;
+export class application {
 
 	public static readonly PLAYER_1 = 1;
 	public static readonly PLAYER_2 = 2;
@@ -77,7 +78,7 @@ export class MGxN3Bx {
 		}
 	}
 
-	public connect(url: string, flags: number = MGxN3Bx.PLAYER_1 | MGxN3Bx.PLAYER_2 | MGxN3Bx.SPECTATE): Promise<void> {
+	public connect(url: string, flags: number = application.PLAYER_1 | application.PLAYER_2 | application.SPECTATE): Promise<void> {
 		this.clients.forEach((client) => {
 			client.world.cells.forEach((cell) => {
 				cell.cellRender.destroy();
@@ -90,21 +91,21 @@ export class MGxN3Bx {
 		const clients: Client[] = [];
 		const sockets: Array<Promise<void>> = [];
 
-		if (flags & MGxN3Bx.PLAYER_1) {
+		if (flags & application.PLAYER_1) {
 			clients.push(new Client(Client.Type.PLAYER_1, new Socket(this.info.clientVersionInt), this));
 		}
 
-		if (flags & MGxN3Bx.PLAYER_2) {
+		if (flags & application.PLAYER_2) {
 			clients.push(new Client(Client.Type.PLAYER_2, new Socket(this.info.clientVersionInt), this));
 		}
 
-		if (flags & MGxN3Bx.SPECTATE) {
+		if (flags & application.SPECTATE) {
 			clients.push(new Client(Client.Type.SPECTATE, new Socket(this.info.clientVersionInt), this));
 		}
 
 		clients.forEach((client) => sockets.push(client.socket.connect(url)));
 
-		// Made changes here
+		// Made changes here for private modes
 		const gamemode = $("#gamemode").val();
 		const region2 = $("#region2").val();
 		
@@ -123,9 +124,7 @@ export class MGxN3Bx {
 		 //
 
 		this.url = url;
-		// Made changes here
-		return Promise.allSettled(sockets).then(() => { // allSettled | all
-		//	
+		return Promise.all(sockets).then(() => { // allSettled | all
 			clients.forEach((client) => {
 				this.clients.set(client.type, client);
 				PacketEncoder.sendHandshake(client, this.info);

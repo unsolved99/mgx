@@ -1,5 +1,5 @@
 import { Client } from "../Client";
-import { MGxN3Bx } from "../Init";
+import { application } from "../Init";
 import { Menu } from "../Menu/Menu";
 import { Account } from "./Account";
 import { Cell } from "./Cell/Cell";
@@ -56,7 +56,7 @@ export class World {
 			victim.x = killer.x;
 			victim.y = killer.y;
 			victim.radius = victim.animRadius;
-			const time = client.mgxn3bx.time;
+			const time = client.app.time;
 			victim.lastUpdateTime = time;
 			victim.fadeStartTime = time;
 			victim.cellRender.destroy();
@@ -71,7 +71,7 @@ export class World {
 			cell.cellRender.destroy();
 			this.cells.delete(cell.id);
 			cell.animate();
-			const time = client.mgxn3bx.time;
+			const time = client.app.time;
 			cell.fadeStartTime = time;
 			cell.lastUpdateTime = time;
 			// this.cells.set(cell.id + ":removed", cell);
@@ -82,14 +82,14 @@ export class World {
 	public sort(client: Client) {
 		this.player.update(client);
 		this.sortedCells = [];
-		const cli = client.mgxn3bx.clients.get(Client.Type.PLAYER_1);
+		const cli = client.app.clients.get(Client.Type.PLAYER_1);
 		this.cells.forEach((cell, ke) => {
 			let render = true;
 			if (client.type !== Client.Type.PLAYER_1 && client.type !== Client.Type.PLAYER_2 && client.type !== Client.Type.SPECTATE) {
 				if (cell.type === Cell.Type.FOOD) {
 					render = false;
 				}
-				if (client.mgxn3bx.game.fullMap.inPosition === false) {
+				if (client.app.game.fullMap.inPosition === false) {
 					render = false;
 				}
 			}
@@ -135,8 +135,8 @@ export class World {
 			this.player.myCells.has(id) ? this.player.myCells.delete(id) : void (0);
 			if (this.player.myCellIDS.size === 0) {
 				this.player.state = Player.State.DEAD;
-				client.mgxn3bx.game.ogario.playerDeath(client.type);
-				client.mgxn3bx.game.multibox.death(this.type);
+				client.app.game.ogario.playerDeath(client.type);
+				client.app.game.multibox.death(this.type);
 			}
 		}
 	}

@@ -1,17 +1,17 @@
 import * as PIXI from "pixi.js";
 import { Client } from "../Client";
-import { MGxN3Bx } from "../Init";
+import { application } from "../Init";
 import { Cell } from "../World/Cell/Cell";
 import { Loop } from "./Loop";
 import { Minimap } from "./Minimap/Minimap";
 import { Spectrum } from "./Spectrum";
 import { Sprites } from "./Sprites/Sprites";
 
-PIXI.utils.skipHello();
+//PIXI.utils.skipHello();
 
 export class Renderer {
 
-	public readonly mgxn3bx: MGxN3Bx;
+	public readonly App: application;
 	public readonly loop: Loop;
 	public readonly sprites: Sprites;
 
@@ -32,8 +32,8 @@ export class Renderer {
 	public minimap: Minimap;
 	public spectrum: Spectrum;
 
-	public constructor(mgxn3bx: MGxN3Bx) {
-		this.mgxn3bx = mgxn3bx;
+	public constructor(app: application) {
+		this.App = app;
 		this.spriteCache = {};
 		this.textureCache = {};
 		this.app = new PIXI.Application({
@@ -86,7 +86,7 @@ export class Renderer {
 	public ringChange() {
 		const cells: Cell[] = [];
 
-		this.mgxn3bx.clients.forEach((client) => {
+		this.App.clients.forEach((client) => {
 			cells.push(...client.world.sortedCells);
 		});
 		cells.forEach((cell: Cell) => {
@@ -95,7 +95,7 @@ export class Renderer {
 					cell.cellRender.sprites.ring.destroy();
 					cell.cellRender.sprites.ring = null;
 				}
-				if (this.mgxn3bx.options.settings.obj.multiboxRings) {
+				if (this.App.options.settings.obj.multiboxRings) {
 					cell.cellRender.drawRing();
 				}
 			}
@@ -106,16 +106,16 @@ export class Renderer {
 		let hue;
 		switch (true) {
 			case type === Client.Type.PLAYER_1 && !isTeam:
-				hue = this.mgxn3bx.options.sliders.obj.player1CircleHue;
+				hue = this.App.options.sliders.obj.player1CircleHue;
 				break;
 			case type === Client.Type.PLAYER_2 && !isTeam:
-				hue = this.mgxn3bx.options.sliders.obj.player2CircleHue;
+				hue = this.App.options.sliders.obj.player2CircleHue;
 				break;
 			case type === Client.Type.PLAYER_1 && isTeam:
-				hue = this.mgxn3bx.options.sliders.obj.teammateCircleHue;
-				if (this.mgxn3bx.clients.get(Client.Type.PLAYER_1)) {
-					x += this.mgxn3bx.clients.get(Client.Type.PLAYER_1).world.offset.x;
-					y += this.mgxn3bx.clients.get(Client.Type.PLAYER_1).world.offset.y;
+				hue = this.App.options.sliders.obj.teammateCircleHue;
+				if (this.App.clients.get(Client.Type.PLAYER_1)) {
+					x += this.App.clients.get(Client.Type.PLAYER_1).world.offset.x;
+					y += this.App.clients.get(Client.Type.PLAYER_1).world.offset.y;
 				}
 				break;
 		}
@@ -170,7 +170,7 @@ export class Renderer {
 	public virusColorChange() {
 		const cells: Cell[] = [];
 
-		this.mgxn3bx.clients.forEach((client) => {
+		this.App.clients.forEach((client) => {
 			cells.push(...client.world.sortedCells);
 		});
 		cells.forEach((cell: Cell) => {
@@ -184,7 +184,7 @@ export class Renderer {
 	public foodColorChange() {
 		const cells: Cell[] = [];
 
-		this.mgxn3bx.clients.forEach((client) => {
+		this.App.clients.forEach((client) => {
 			cells.push(...client.world.sortedCells);
 		});
 		cells.forEach((cell: Cell) => {
@@ -197,7 +197,7 @@ export class Renderer {
 	public massChange() {
 		const cells: Cell[] = [];
 
-		this.mgxn3bx.clients.forEach((client) => {
+		this.App.clients.forEach((client) => {
 			cells.push(...client.world.sortedCells);
 		});
 		cells.forEach((cell: Cell) => {
@@ -211,7 +211,7 @@ export class Renderer {
 	public nickChange() {
 		const cells: Cell[] = [];
 
-		this.mgxn3bx.clients.forEach((client) => {
+		this.App.clients.forEach((client) => {
 			cells.push(...client.world.sortedCells);
 		});
 		cells.forEach((cell: Cell) => {
@@ -238,9 +238,9 @@ export class Renderer {
 	}
 
 	public drawBackgroundImage() {
-		const on = this.mgxn3bx.options.settings.obj.backgroundImage;
-		const url = this.mgxn3bx.options.settings.obj.backgroundImageURL;
-		const color = PIXI.utils.string2hex(this.mgxn3bx.options.theming.obj.backgroundImageColor);
+		const on = this.App.options.settings.obj.backgroundImage;
+		const url = this.App.options.settings.obj.backgroundImageURL;
+		const color = PIXI.utils.string2hex(this.App.options.theming.obj.backgroundImageColor);
 		if (this.spriteCache.backgroundImage instanceof PIXI.Sprite) {
 			this.statics.removeChild(this.spriteCache.backgroundImage);
 			this.spriteCache.backgroundImage.destroy();
@@ -249,7 +249,7 @@ export class Renderer {
 		if (on) {
 			const sprite = PIXI.Sprite.from(url);
 			sprite.width = sprite.height = 14142;
-			const client = this.mgxn3bx.clients.get(Client.Type.PLAYER_1);
+			const client = this.App.clients.get(Client.Type.PLAYER_1);
 			const x = client ? client.world.center.x : 0;
 			const y = client ? client.world.center.y : 0;
 			sprite.position.set(x, y);
@@ -265,11 +265,11 @@ export class Renderer {
 			this.world.removeChild(this.spriteCache.border);
 			this.spriteCache.border.destroy();
 		}
-		let offset = this.mgxn3bx.options.sliders.obj.borderWidth; // Width
-		if (this.mgxn3bx.options.settings.obj.borderGlow && !this.mgxn3bx.options.settings.obj.rainbowBorder) {
-			offset += this.mgxn3bx.options.sliders.obj.borderGlowSize;
+		let offset = this.App.options.sliders.obj.borderWidth; // Width
+		if (this.App.options.settings.obj.borderGlow && !this.App.options.settings.obj.rainbowBorder) {
+			offset += this.App.options.sliders.obj.borderGlowSize;
 		} // Shadowblur
-		const client = this.mgxn3bx.clients.get(Client.Type.PLAYER_1);
+		const client = this.App.clients.get(Client.Type.PLAYER_1);
 		const border = new PIXI.Sprite(this.sprites.border.texture);
 		let x = client ? client.world.border.left : -7071;
 		let y = client ? client.world.border.top : -7071;
@@ -283,14 +283,14 @@ export class Renderer {
 	}
 
 	public drawSectors() {
-		const obj = this.mgxn3bx.options.settings.obj;
+		const obj = this.App.options.settings.obj;
 		if (this.spriteCache.sectors instanceof PIXI.Sprite) {
 			this.statics.removeChild(this.spriteCache.sectors);
 			this.spriteCache.sectors.destroy();
 			this.spriteCache.sectors = null;
 		}
 		if (obj.sectors) {
-			const client = this.mgxn3bx.clients.get(Client.Type.PLAYER_1);
+			const client = this.App.clients.get(Client.Type.PLAYER_1);
 			const x = client ? client.world.border.left : -7071;
 			const y = client ? client.world.border.top : -7071;
 			const sectors = PIXI.Sprite.from(this.sprites.sectors.texture);
@@ -303,13 +303,13 @@ export class Renderer {
 	}
 
 	public drawRainbow() {
-		if (this.mgxn3bx.options.settings.obj.rainbowBorder === true) {
+		if (this.App.options.settings.obj.rainbowBorder === true) {
 			this.colorMatrix = new PIXI.filters.ColorMatrixFilter();
 			const sprite = PIXI.Sprite.from("assets/images/border_blur_rgb.png");
 			sprite.width = 14142 + 1050;
 			sprite.height = 14142 + 1050;
 			sprite.anchor.set(0.5);
-			const client = this.mgxn3bx.clients.get(Client.Type.PLAYER_1);
+			const client = this.App.clients.get(Client.Type.PLAYER_1);
 			const x = client ? client.world.center.x : 0;
 			const y = client ? client.world.center.y : 0;
 			const container = new PIXI.Container();
@@ -333,11 +333,11 @@ export class Renderer {
 	}
 
 	public positionBorder() {
-		let offset = this.mgxn3bx.options.sliders.obj.borderWidth; // Width
-		if (this.mgxn3bx.options.settings.obj.borderGlow && !this.mgxn3bx.options.settings.obj.rainbowBorder) {
-			offset += this.mgxn3bx.options.sliders.obj.borderGlowSize;
+		let offset = this.App.options.sliders.obj.borderWidth; // Width
+		if (this.App.options.settings.obj.borderGlow && !this.App.options.settings.obj.rainbowBorder) {
+			offset += this.App.options.sliders.obj.borderGlowSize;
 		}
-		const client = this.mgxn3bx.clients.get(Client.Type.PLAYER_1);
+		const client = this.App.clients.get(Client.Type.PLAYER_1);
 		let x = client ? client.world.border.left : -7071;
 		let y = client ? client.world.border.top : -7071;
 		if (this.spriteCache.sectors) {
@@ -347,10 +347,10 @@ export class Renderer {
 		x -= offset; y -= offset;
 		const border = this.spriteCache.border;
 		border.position.set(x, y);
-		if (this.mgxn3bx.options.settings.obj.rainbowBorder === true) {
+		if (this.App.options.settings.obj.rainbowBorder === true) {
 			this.rainbowContainer.position.set(client.world.center.x, client.world.center.y);
 		}
-		if (this.spriteCache.backgroundImage instanceof PIXI.Sprite && this.mgxn3bx.options.settings.obj.backgroundImage === true) {
+		if (this.spriteCache.backgroundImage instanceof PIXI.Sprite && this.App.options.settings.obj.backgroundImage === true) {
 			this.spriteCache.backgroundImage.position.set(client.world.center.x, client.world.center.y);
 		}
 	}

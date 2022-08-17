@@ -1,5 +1,5 @@
 import { Client } from "../Client";
-import { MGxN3Bx } from "../Init";
+import { application } from "../Init";
 import { Request } from "../Master/Request";
 import { PacketEncoder } from "../Network/PacketEncoder";
 import { Chat } from "./Chat";
@@ -51,7 +51,7 @@ export class Events {
 			const reader = new FileReader();
 			reader.onload = (e) => {
 				if (typeof reader.result === "string") {
-					this.menu.mgxn3bx.renderer.spectrum.loadSong(reader.result);
+					this.menu.app.renderer.spectrum.loadSong(reader.result);
 				}
 			};
 			const file = (document.getElementById("audioInput") as HTMLInputElement).files[0];
@@ -72,17 +72,17 @@ export class Events {
 		});
 
 		$("#GODMODE-switch").click(() => {
-			this.menu.mgxn3bx.toggleFullMap();
+			this.menu.app.toggleFullMap();
 		});
 
 		$("#load-url-button").click(() => {
 			const src = $("#audioVisualiserURL").val();
-			this.menu.mgxn3bx.renderer.spectrum.loadSong(String(src));
+			this.menu.app.renderer.spectrum.loadSong(String(src));
 			Chat.addChatMessage("", `Now playing: ${src}`, 1);
 		});
 
 		$("#play-pause-button").click(() => {
-			const audio = this.menu.mgxn3bx.renderer.spectrum.audio;
+			const audio = this.menu.app.renderer.spectrum.audio;
 			const paused = audio.paused;
 			if (paused) {
 				audio.play();
@@ -100,24 +100,24 @@ export class Events {
 		$(".audio-track").click((e) => {
 			const width = e.pageX - $(".audio-track").offset().left;
 			const factor = (width / $(".audio-track").width());
-			const audio = this.menu.mgxn3bx.renderer.spectrum.audio;
+			const audio = this.menu.app.renderer.spectrum.audio;
 			audio.currentTime = audio.duration * factor;
 		});
 
 		$("#spectate-button").click(() => {
 			Menu.hideMenu();
-			if (this.menu.mgxn3bx.clients.has(Client.Type.PLAYER_1)) {
-				PacketEncoder.sendSpectate((this.menu.mgxn3bx.clients.get(Client.Type.PLAYER_1)));
+			if (this.menu.app.clients.has(Client.Type.PLAYER_1)) {
+				PacketEncoder.sendSpectate((this.menu.app.clients.get(Client.Type.PLAYER_1)));
 			}
-			this.menu.mgxn3bx.game.ogario.joinServer(this.menu.mgxn3bx.serverToken, String($("#party").val()));
+			this.menu.app.game.ogario.joinServer(this.menu.app.serverToken, String($("#party").val()));
 		});
 		$("#play-button").click(() => {
 			Menu.hideMenu();
-			if (this.menu.mgxn3bx.clients.has(Client.Type.PLAYER_1)) {
+			if (this.menu.app.clients.has(Client.Type.PLAYER_1)) {
 				const nick = $("#user-name-1").val();
-				this.menu.mgxn3bx.spawn(1, String(nick));
+				this.menu.app.spawn(1, String(nick));
 			}
-			this.menu.mgxn3bx.game.ogario.joinServer(this.menu.mgxn3bx.serverToken, String($("#party").val()));
+			this.menu.app.game.ogario.joinServer(this.menu.app.serverToken, String($("#party").val()));
 		});
 		$("#settings-button").click(() => {
 			Menu.openSettingsMenu();
@@ -152,17 +152,17 @@ export class Events {
 			const gamemode = $("#gamemode").val();
 
 			if (gamemode === ":party") {
-				Request.getServer(String(region), String(gamemode), this.menu.mgxn3bx.info, (res: any) => {
+				Request.getServer(String(region), String(gamemode), this.menu.app.info, (res: any) => {
 					let token = res.endpoints.https;
 					token = res.token;
 					$("#party").val(token);
-					this.menu.mgxn3bx.connect(`wss://${res.endpoints.https}`);
+					this.menu.app.connect(`wss://${res.endpoints.https}`);
 					location.hash = token;
 				});
 			 };
 
 			 if (gamemode === ":private") { 
-				this.menu.mgxn3bx.connect(`${region2}`);
+				this.menu.app.connect(`${region2}`, 1);
 			 };
 
 		});
@@ -174,14 +174,14 @@ export class Events {
 			const token = $("#party").val();
 			const gamemode = $("#gamemode").val();
 			if (gamemode === ":party") {
-				Request.joinParty(String(region), String(token), this.menu.mgxn3bx.info, (res: any) => {
-					this.menu.mgxn3bx.connect(`wss://${res.endpoints.https}`);
+				Request.joinParty(String(region), String(token), this.menu.app.info, (res: any) => {
+					this.menu.app.connect(`wss://${res.endpoints.https}`);
 					location.hash = String(token);
 				});
 			};
 			if (gamemode === ":private") { 
 				// Will later fix to translate token to wss
-				//this.menu.mgxn3bx.connect(`${region2}`);
+				//this.menu.app.connect(`${region2}`);
 			};
 
 		});
@@ -190,8 +190,8 @@ export class Events {
 		});
 
 		$("#facebook-button").click(() => {
-			if (this.menu.mgxn3bx.master.login.facebook.loggedIn === false) {
-				this.menu.mgxn3bx.master.login.facebook.login();
+			if (this.menu.app.master.login.facebook.loggedIn === false) {
+				this.menu.app.master.login.facebook.login();
 			}
 		});
 	}

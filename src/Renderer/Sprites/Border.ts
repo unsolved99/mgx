@@ -1,16 +1,16 @@
 import * as PIXI from "pixi.js";
-import { MGxN3Bx } from "../../Init";
+import { application } from "../../Init";
 
 export class Border {
 
 	public texture: PIXI.Texture;
 	public canvas: HTMLCanvasElement;
 
-	public init(mgxn3bx: MGxN3Bx) {
-		this.createTexture(mgxn3bx);
+	public init(app: application) {
+		this.createTexture(app);
 	}
 
-	public createTexture(mgxn3bx: MGxN3Bx) {
+	public createTexture(app: application) {
 		if (!this.canvas) {
 			this.canvas = document.createElement("canvas");
 		}
@@ -22,10 +22,10 @@ export class Border {
 		const ctx = canvas.getContext("2d");
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-		const glow = mgxn3bx.options.settings.obj.borderGlow && !mgxn3bx.options.settings.obj.rainbowBorder;
+		const glow = app.options.settings.obj.borderGlow && !app.options.settings.obj.rainbowBorder;
 		const scale = 0.14;
-		const shadowBlur = mgxn3bx.options.sliders.obj.borderGlowSize * scale;
-		const lineWidth = mgxn3bx.options.sliders.obj.borderWidth * scale;
+		const shadowBlur = app.options.sliders.obj.borderGlowSize * scale;
+		const lineWidth = app.options.sliders.obj.borderWidth * scale;
 		const size = 14142 * scale;
 		let offset = (lineWidth);
 		if (glow) { offset += shadowBlur; }
@@ -33,13 +33,13 @@ export class Border {
 		canvas.width = canvas.height = size + offset * 2;
 
 		ctx.lineWidth = lineWidth;
-		ctx.strokeStyle = mgxn3bx.options.theming.obj.borderColor;
+		ctx.strokeStyle = app.options.theming.obj.borderColor;
 		if (glow) {
 			ctx.shadowBlur = shadowBlur;
-			ctx.shadowColor = mgxn3bx.options.theming.obj.borderGlowColor;
+			ctx.shadowColor = app.options.theming.obj.borderGlowColor;
 		}
 		ctx.rect(0 + offset, 0 + offset, size, size);
-		for (let i = 0; i < mgxn3bx.options.sliders.obj.borderGlowStrength; i++) {
+		for (let i = 0; i < app.options.sliders.obj.borderGlowStrength; i++) {
 			ctx.stroke();
 		}
 

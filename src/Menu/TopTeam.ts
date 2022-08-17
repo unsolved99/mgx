@@ -29,7 +29,7 @@ export class TopTeam {
 	}
 
 	private getTop(amount: number) {
-		const ogario = this.menu.mgxn3bx.game.ogario;
+		const ogario = this.menu.app.game.ogario;
 
 		ogario.mainSocket.teamPlayers.forEach((player: Ogario.TeamPlayer) => {
 			if (player.alive) {
@@ -77,7 +77,7 @@ export class TopTeam {
 	}
 
 	private getLocation(player: Ogario.TeamPlayer): string {
-		const cli = this.menu.mgxn3bx.clients.get(Client.Type.PLAYER_1);
+		const cli = this.menu.app.clients.get(Client.Type.PLAYER_1);
 		if (cli) {
 			return cli.world.getLocation(player.position.x, player.position.y);
 		} else {

@@ -18,7 +18,7 @@ export class Mouse {
 	}
 
 	public addEvents() {
-		const canvas = this.game.mgxn3bx.renderer.app.view;
+		const canvas = this.game.app.renderer.app.view;
 		// this.addEventsElement(canvas);
 		this.addEventsElement(document.getElementsByClassName("hud")[0]);
 	}
@@ -57,18 +57,18 @@ export class Mouse {
 	}
 
 	public onMouseWheel(ue: any) {
-		const zoomSpeed = this.game.mgxn3bx.options.sliders.obj.zoomSpeed;
+		const zoomSpeed = this.game.app.options.sliders.obj.zoomSpeed;
 		let fe = this.game.camera.targetViewport;
 		0 > ue.wheelDelta ? fe *= zoomSpeed / 100 : fe /= zoomSpeed / 100, fe = 2 < fe ? 2 : 0.02 > fe ? 0.02 : fe;
 		this.game.camera.targetViewport = fe;
 	}
 
 	public send() {
-		const canvas = this.game.mgxn3bx.renderer.app.view;
+		const canvas = this.game.app.renderer.app.view;
 		this.canvasX = (this.x - canvas.width / 2) / this.game.camera.viewport + this.game.camera.x;
 		this.canvasY = (this.y - canvas.height / 2) / this.game.camera.viewport + this.game.camera.y;
-		const cli = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_1);
-		const cli2 = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_2);
+		const cli = this.game.app.clients.get(Client.Type.PLAYER_1);
+		const cli2 = this.game.app.clients.get(Client.Type.PLAYER_2);
 		if (cli && cli.world.player.state !== Player.State.DEAD || cli2 && cli2.world.player.state !== Player.State.DEAD) {
 			this.game.multibox.mouseMove(this.canvasX, this.canvasY);
 		}

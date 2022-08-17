@@ -10,7 +10,7 @@ class AudioReader {
 
 	protected constructor(renderer: Renderer) {
 		this.renderer = renderer;
-		this.audio.volume = (this.renderer.mgxn3bx.options.sliders.obj.audioVolume / 100);
+		this.audio.volume = (this.renderer.App.options.sliders.obj.audioVolume / 100);
 	}
 
 	public loadSong(src: string) {
@@ -23,7 +23,7 @@ class AudioReader {
 		this.audio.src = src;
 		this.audio.controls = true;
 		this.audio.loop = true;
-		this.audio.volume = (this.renderer.mgxn3bx.options.sliders.obj.audioVolume / 100);
+		this.audio.volume = (this.renderer.App.options.sliders.obj.audioVolume / 100);
 		this.read();
 		$("#play-pause-button").html(`<i class="material-icons">play_arrow</i>`);
 	}
@@ -128,13 +128,13 @@ export class Spectrum extends AudioReader {
 	}
 
 	public getColor(index: number): number {
-		this.colors[0] = this.renderer.mgxn3bx.options.theming.obj.visualiserColor1;
-		this.colors[1] = this.renderer.mgxn3bx.options.theming.obj.visualiserColor2;
+		this.colors[0] = this.renderer.App.options.theming.obj.visualiserColor1;
+		this.colors[1] = this.renderer.App.options.theming.obj.visualiserColor2;
 		return PIXI.utils.string2hex(this.colors[index]);
 	}
 
 	public get scale() {
-		return this.renderer.mgxn3bx.options.sliders.obj.audioVisualiserSize;
+		return this.renderer.App.options.sliders.obj.audioVisualiserSize;
 	}
 
 	public clear() {

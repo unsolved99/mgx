@@ -39,12 +39,12 @@ export class Player {
 			x += cell.animX / this.myCells.size;
 			y += cell.animY / this.myCells.size;
 			mass += cell.mass;
-			client.mgxn3bx.game.ogario.mainSocket.player.alive = true;
+			client.app.game.ogario.mainSocket.player.alive = true;
 		}
 		this.position = { x, y };
 		this.mass = mass;
 		if (this.mass > this.topMass) { this.topMass = this.mass; }
-		client.mgxn3bx.game.ogario.updatePosition(this.world.type, x - this.world.offset.x, y - this.world.offset.y, this.mass);
+		client.app.game.ogario.updatePosition(this.world.type, x - this.world.offset.x, y - this.world.offset.y, this.mass);
 	}
 
 	private setValues() {

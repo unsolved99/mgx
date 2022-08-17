@@ -55,22 +55,29 @@ export class Socket extends EventEmitter {
 		return new Promise((resolve: () => void, reject: (err: string) => void) => {
 			this.webSocket = new WebSocket(this.url = url);
 			this.webSocket.binaryType = "arraybuffer";
+			
 			// Made Changes here
 			this.webSocket.addEventListener("open", () => {
 				const gamemode = $("#gamemode").val();
 				if (gamemode === ":private") {
 					const ping = new Uint8Array([254]);
-					this.pingLoop = setInterval(() => this.webSocket.send(ping), 500);
+					clearInterval(this.pingLoop);
+					this.pingLoop = setInterval(() => this.send(ping), 500);
 				}
 				resolve();
 			});
 			//
 			//this.webSocket.addEventListener("open", resolve);
 			this.webSocket.addEventListener("message", (event: MessageEvent) => this.onMessage(event.data));
-			this.webSocket.addEventListener("close", (reason) => {
+			this.webSocket.addEventListener("close", () => {
 				this.emit("close");
 				this.disconnect();
-				console.log(reason);
+				// Made changes here
+				const gamemode = $("#gamemode").val();
+				if (gamemode === ":party") {
+					clearInterval(this.pingLoop);
+				}
+			//
 			});
 			this.webSocket.addEventListener("error", () => {
 				reject(`Failed to connect to ${this.url}`);
@@ -93,12 +100,6 @@ export class Socket extends EventEmitter {
 	public disconnect(): void {
 		if (this.isActive) {
 			this.webSocket.close();
-			// Made changes here
-			const gamemode = $("#gamemode").val();
-			if (gamemode === ":party") {
-				clearInterval(this.pingLoop);
-			}
-			//
 		}
 
 		this.webSocket = null;

@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js";
-import { MGxN3Bx } from "../../Init";
+import { application } from "../../Init";
 import { Cell } from "../../World/Cell/Cell";
 
 export class Virus {
@@ -11,19 +11,19 @@ export class Virus {
 	constructor(public app: PIXI.Application) {
 	}
 
-	public init(mgxn3bx: MGxN3Bx) {
-		this.createtexture(mgxn3bx);
+	public init(app: application) {
+		this.createtexture(app);
 	}
 
-	public createtexture(mgxn3bx: MGxN3Bx) {
+	public createtexture(app: application) {
 		if (!this.canvas) {
 			this.canvas = document.createElement("canvas");
 		}
 		if (this.texture) {
 			PIXI.Texture.removeFromCache(this.texture);
 		}
-		const glow = mgxn3bx.options.settings.obj.virusGlow;
-		const strength = mgxn3bx.options.sliders.obj.virusGlowStrength;
+		const glow = app.options.settings.obj.virusGlow;
+		const strength = app.options.sliders.obj.virusGlowStrength;
 		const canvas = this.canvas;
 		const ctx = canvas.getContext("2d");
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -32,22 +32,22 @@ export class Virus {
 		canvas.height = this.size;
 
 		ctx.beginPath();
-		ctx.globalAlpha = mgxn3bx.options.sliders.obj.virusOpacity;
+		ctx.globalAlpha = app.options.sliders.obj.virusOpacity;
 		ctx.arc(size / 2, size / 2, 100, 0, Math.TAU, true);
 		ctx.closePath();
-		ctx.fillStyle = mgxn3bx.options.theming.obj.virusColor;
+		ctx.fillStyle = app.options.theming.obj.virusColor;
 		ctx.fill();
 
 		ctx.beginPath();
 		ctx.globalAlpha = 1;
-		ctx.lineWidth = mgxn3bx.options.sliders.obj.virusStrokeSize;
+		ctx.lineWidth = app.options.sliders.obj.virusStrokeSize;
 		if (glow) {
-			ctx.shadowBlur = mgxn3bx.options.sliders.obj.virusGlowSize;
-			ctx.shadowColor = mgxn3bx.options.theming.obj.virusGlowColor;
+			ctx.shadowBlur = app.options.sliders.obj.virusGlowSize;
+			ctx.shadowColor = app.options.theming.obj.virusGlowColor;
 		}
 		ctx.arc(size / 2, size / 2, 100, 0, Math.TAU, true);
 		ctx.closePath();
-		ctx.strokeStyle = mgxn3bx.options.theming.obj.virusStrokeColor;
+		ctx.strokeStyle = app.options.theming.obj.virusStrokeColor;
 		if (glow) {
 			for (let i = 0; i < strength; i++) {
 				ctx.stroke();

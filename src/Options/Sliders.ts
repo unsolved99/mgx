@@ -1,4 +1,4 @@
-import { MGxN3Bx } from "../Init";
+import { application } from "../Init";
 import { Defaults } from "../Utils/Defaults";
 import { Storage } from "../Utils/Storage";
 import { Options } from "./Options";
@@ -71,26 +71,26 @@ export class Sliders {
 	private onChange(option: string) {
 		switch (option) {
 			case "audioVolume":
-				this.mgxn3bx.renderer.spectrum.audio.volume = (this.obj.audioVolume / 100);
+				this.app.renderer.spectrum.audio.volume = (this.obj.audioVolume / 100);
 				break;
 			case "foodGlowSize":
 			case "foodGlowStrength":
 			case "foodSize":
-				this.mgxn3bx.renderer.sprites.food.createtexture(this.mgxn3bx);
-				this.mgxn3bx.renderer.foodColorChange();
+				this.app.renderer.sprites.food.createtexture(this.app);
+				this.app.renderer.foodColorChange();
 				break;
 			case "virusStrokeSize":
 			case "virusGlowSize":
 			case "virusGlowStrength":
 			case "virusOpacity":
-				this.mgxn3bx.renderer.sprites.virus.createtexture(this.mgxn3bx);
-				this.mgxn3bx.renderer.virusColorChange();
+				this.app.renderer.sprites.virus.createtexture(this.app);
+				this.app.renderer.virusColorChange();
 				break;
 			case "borderWidth":
 			case "borderGlowSize":
 			case "borderGlowStrength":
-				this.mgxn3bx.renderer.sprites.border.createTexture(this.mgxn3bx);
-				this.mgxn3bx.renderer.drawBorder();
+				this.app.renderer.sprites.border.createTexture(this.app);
+				this.app.renderer.drawBorder();
 				break;
 			case "menuBG1Opacity":
 			case "MenuBG2Opacity":
@@ -102,8 +102,8 @@ export class Sliders {
 				this.setMenu();
 				break;
 			case "multiboxRingSize":
-				this.mgxn3bx.renderer.sprites.ring.init(this.mgxn3bx);
-				this.mgxn3bx.renderer.ringChange();
+				this.app.renderer.sprites.ring.init(this.app);
+				this.app.renderer.ringChange();
 				break;
 			default:
 				break;
@@ -129,8 +129,8 @@ export class Sliders {
 		document.documentElement.style.setProperty("--second-bg-color", color2);
 	}
 
-	private get mgxn3bx(): MGxN3Bx {
-		return this.options.mgxn3bx;
+	private get app(): application {
+		return this.options.app;
 	}
 
 }

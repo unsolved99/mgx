@@ -21,23 +21,23 @@ export class Stats {
 	}
 
 	private get playerCount(): number {
-		return this.menu.mgxn3bx.clients.has(Client.Type.PLAYER_1) ? this.menu.mgxn3bx.clients.get(Client.Type.PLAYER_1).world.leaderBoard.list.size : 0;
+		return this.menu.app.clients.has(Client.Type.PLAYER_1) ? this.menu.app.clients.get(Client.Type.PLAYER_1).world.leaderBoard.list.size : 0;
 	}
 
 	private get playerMass(): number {
-		return this.menu.mgxn3bx.clients.has(Client.Type.PLAYER_1) ? this.menu.mgxn3bx.clients.get(Client.Type.PLAYER_1).world.player.mass : 0;
+		return this.menu.app.clients.has(Client.Type.PLAYER_1) ? this.menu.app.clients.get(Client.Type.PLAYER_1).world.player.mass : 0;
 	}
 
 	private get playerTopMass(): number {
-		return this.menu.mgxn3bx.clients.has(Client.Type.PLAYER_1) ? this.menu.mgxn3bx.clients.get(Client.Type.PLAYER_1).world.player.topMass : 0;
+		return this.menu.app.clients.has(Client.Type.PLAYER_1) ? this.menu.app.clients.get(Client.Type.PLAYER_1).world.player.topMass : 0;
 	}
 
 	private get playerMass2(): number {
-		return this.menu.mgxn3bx.clients.has(Client.Type.PLAYER_2) ? this.menu.mgxn3bx.clients.get(Client.Type.PLAYER_2).world.player.mass : 0;
+		return this.menu.app.clients.has(Client.Type.PLAYER_2) ? this.menu.app.clients.get(Client.Type.PLAYER_2).world.player.mass : 0;
 	}
 
 	private get playerTopMass2(): number {
-		return this.menu.mgxn3bx.clients.has(Client.Type.PLAYER_2) ? this.menu.mgxn3bx.clients.get(Client.Type.PLAYER_2).world.player.topMass : 0;
+		return this.menu.app.clients.has(Client.Type.PLAYER_2) ? this.menu.app.clients.get(Client.Type.PLAYER_2).world.player.topMass : 0;
 	}
 
 	private get teamTotalMass(): number {

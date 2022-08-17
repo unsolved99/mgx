@@ -20,8 +20,8 @@ export class Multibox {
 	}
 
 	public death(type: Client.Type) {
-		const cli = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_1);
-		const cli2 = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_2);
+		const cli = this.game.app.clients.get(Client.Type.PLAYER_1);
+		const cli2 = this.game.app.clients.get(Client.Type.PLAYER_2);
 		if (type === Client.Type.PLAYER_1) {
 			if (cli2) {
 				switch (true) {
@@ -54,8 +54,8 @@ export class Multibox {
 
 		let x = 0;
 		let y = 0;
-		const client = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_1);
-		const client2 = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_2);
+		const client = this.game.app.clients.get(Client.Type.PLAYER_1);
+		const client2 = this.game.app.clients.get(Client.Type.PLAYER_2);
 		let cells;
 		if (client && client2) {
 			cells = new Map([...client2.world.player.myCells, ...client.world.player.myCells]);
@@ -76,8 +76,8 @@ export class Multibox {
 	}
 
 	public mouseMove(x: number, y: number) {
-		const client = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_1);
-		const client2 = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_2);
+		const client = this.game.app.clients.get(Client.Type.PLAYER_1);
+		const client2 = this.game.app.clients.get(Client.Type.PLAYER_2);
 		if (this.activeTab === 1 && client) {
 			PacketEncoder.sendMouseMove(client, x, y);
 		} else if (client2) {
@@ -87,15 +87,15 @@ export class Multibox {
 	}
 
 	public spawnTab(tab: 1 | 2) {
-		if (this.game.mgxn3bx.clients.has((Client as any).Type["PLAYER_" + tab])) {
+		if (this.game.app.clients.has((Client as any).Type["PLAYER_" + tab])) {
 			const nick = $("#user-name-" + tab).val();
-			this.game.mgxn3bx.spawn(tab, String(nick));
+			this.game.app.spawn(tab, String(nick));
 		}
 	}
 
 	public switch() {
-		const cli = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_1);
-		const cli2 = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_2);
+		const cli = this.game.app.clients.get(Client.Type.PLAYER_1);
+		const cli2 = this.game.app.clients.get(Client.Type.PLAYER_2);
 
 		if (cli && cli2) {
 			if (cli.world.player.state === Player.State.DEAD && cli2.world.player.state === Player.State.DEAD) {
@@ -166,10 +166,10 @@ export class Multibox {
 
 		switch (this.activeTab) {
 			case 1:
-				client = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_1);
+				client = this.game.app.clients.get(Client.Type.PLAYER_1);
 				break;
 			case 2:
-				client = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_2);
+				client = this.game.app.clients.get(Client.Type.PLAYER_2);
 				break;
 			default:
 				client = null;

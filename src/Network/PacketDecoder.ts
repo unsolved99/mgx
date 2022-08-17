@@ -24,7 +24,7 @@ export class PacketDecoder extends EventEmitter {
 				const spectateX = buf.readFloat32();
 				const spectateY = buf.readFloat32();
 				if (client.type === Client.Type.PLAYER_1) {
-					client.mgxn3bx.game.camera.spectatePoint = {
+					client.app.game.camera.spectatePoint = {
 						x: spectateX,
 						y: spectateY,
 					};
@@ -34,7 +34,7 @@ export class PacketDecoder extends EventEmitter {
 				break;
 			case 32:
 				if (client.world.player.myCellIDS.size === 0) {
-					client.mgxn3bx.game.ogario.spawn(client.type);
+					client.app.game.ogario.spawn(client.type);
 					client.world.player.topMass = 0;
 				}
 				client.world.player.myCellIDS.add(buf.readUInt32());
@@ -85,16 +85,16 @@ export class PacketDecoder extends EventEmitter {
 
 			case 241:
 				client.socket.decryptionKey = buf.readUInt32();
-				client.socket.encryptionKey = this.generateEncryptKey(client.mgxn3bx.url, new Uint8Array(buf.dataView.buffer, buf.index));
+				client.socket.encryptionKey = this.generateEncryptKey(client.app.url, new Uint8Array(buf.dataView.buffer, buf.index));
 				if (client.type === Client.Type.SPECTATE) {
 					PacketEncoder.sendSpectate(client);
 				}
 				break;
 			case 242:
 				if (client.type === Client.Type.PLAYER_1) {
-					client.mgxn3bx.master.login.sendTab1();
+					client.app.master.login.sendTab1();
 				} else if (client.type === Client.Type.PLAYER_2) {
-					client.mgxn3bx.master.login.sendTab2();
+					client.app.master.login.sendTab2();
 				}
 				break;
 			case 255:
@@ -148,10 +148,10 @@ export class PacketDecoder extends EventEmitter {
 		client.world.offset = { x: offsetX, y: offsetY };
 		client.world.center = { x: centerX, y: centerY };
 		if (client.type === Client.Type.PLAYER_1) {
-			client.mgxn3bx.game.camera.spectatePoint.x = client.world.spectatePos.x = client.mgxn3bx.game.camera.x = centerX;
-			client.mgxn3bx.game.camera.spectatePoint.y = client.world.spectatePos.y = client.mgxn3bx.game.camera.y = centerY;
+			client.app.game.camera.spectatePoint.x = client.world.spectatePos.x = client.app.game.camera.x = centerX;
+			client.app.game.camera.spectatePoint.y = client.world.spectatePos.y = client.app.game.camera.y = centerY;
 			client.world.focusedAtCenter = true;
-			client.mgxn3bx.renderer.positionBorder();
+			client.app.renderer.positionBorder();
 		}
 
 	}
@@ -193,14 +193,14 @@ export class PacketDecoder extends EventEmitter {
 			}
 			if (client.world.player.myCellIDS.has(cell.id)) {
 				if (client.world.player.myCells.size === 0) {
-					if (client.mgxn3bx.options.settings.obj.circleOnSpawn) {
-						client.mgxn3bx.renderer.drawCommander(cell.x, cell.y, client.type);
+					if (client.app.options.settings.obj.circleOnSpawn) {
+						client.app.renderer.drawCommander(cell.x, cell.y, client.type);
 					}
 				}
 				cell.isMe = true;
 				cell.customSkin = client.world.player.skin;
 				cell.setNick(client.world.player.nick);
-				client.mgxn3bx.game.ogario.setColor(cell.color.hex, client.type);
+				client.app.game.ogario.setColor(cell.color.hex, client.type);
 				client.world.player.myCells.set(cell.id, cell);
 			}
 			client.world.cells.set(cell.id, cell);
@@ -212,9 +212,9 @@ export class PacketDecoder extends EventEmitter {
 			client.world.removeCell(client.world.cells.get(id), client);
 		}
 
-		if (client.world.cellOffset.x === 0 && client.world.cellOffset.y === 0 && client.mgxn3bx.clients.has(Client.Type.PLAYER_1)) {
+		if (client.world.cellOffset.x === 0 && client.world.cellOffset.y === 0 && client.app.clients.has(Client.Type.PLAYER_1)) {
 			if (client.type !== Client.Type.PLAYER_1 && client.world.offset) {
-				const PLAYER1: Client = client.mgxn3bx.clients.get(Client.Type.PLAYER_1);
+				const PLAYER1: Client = client.app.clients.get(Client.Type.PLAYER_1);
 				if (PLAYER1.world.offset) {
 					client.world.cellOffset = {
 						x: (client.world.offset.x - PLAYER1.world.offset.x),

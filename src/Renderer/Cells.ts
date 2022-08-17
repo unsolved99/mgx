@@ -7,23 +7,23 @@ import { Viewport } from "./Viewport";
 export class Cells {
 
 	public static draw(renderer: Renderer) {
-		const cli = renderer.mgxn3bx.clients.get(Client.Type.PLAYER_1);
-		const cli2 = renderer.mgxn3bx.clients.get(Client.Type.PLAYER_2);
-		const spectate = renderer.mgxn3bx.clients.get(Client.Type.SPECTATE);
+		const cli = renderer.App.clients.get(Client.Type.PLAYER_1);
+		const cli2 = renderer.App.clients.get(Client.Type.PLAYER_2);
+		const spectate = renderer.App.clients.get(Client.Type.SPECTATE);
 		if (!cli) {
 			return;
 		}
 		const cells: Cell[] = [];
 
-		renderer.mgxn3bx.clients.forEach((client) => {
+		renderer.App.clients.forEach((client) => {
 			cells.push(...client.world.sortedCells);
 		});
 
 		cells.forEach((cell: Cell) => {
-			const delay = renderer.mgxn3bx.options.sliders.obj.animationDelay;
+			const delay = renderer.App.options.sliders.obj.animationDelay;
 			cell.animate();
-			const visible = Viewport.checkViewport(cell, renderer.mgxn3bx);
-			const alpha = cell.fadeStartTime ? Math.max(1 - (renderer.mgxn3bx.time - cell.fadeStartTime) / delay, 0.01) : 1;
+			const visible = Viewport.checkViewport(cell, renderer.App);
+			const alpha = cell.fadeStartTime ? Math.max(1 - (renderer.App.time - cell.fadeStartTime) / delay, 0.01) : 1;
 			if (cell.cellRender.destroyed === false) {
 				if (cell.cellRender.containers.circle === null) {
 					renderer.cells.addChild(cell.cellRender.initialRender(renderer));
@@ -41,8 +41,8 @@ export class Cells {
 
 	public static drawText(cell: Cell, renderer: Renderer): void {
 		if (cell.cellRender.destroyed === false) {
-			cell.client.mgxn3bx.options.settings.obj.massText ? this.drawMass(cell, renderer) : void (0);
-			cell.client.mgxn3bx.options.settings.obj.nickText ? this.drawNick(cell, renderer) : void (0);
+			cell.client.app.options.settings.obj.massText ? this.drawMass(cell, renderer) : void (0);
+			cell.client.app.options.settings.obj.nickText ? this.drawNick(cell, renderer) : void (0);
 		}
 	}
 
@@ -53,14 +53,14 @@ export class Cells {
 		const massText = cell.cellRender.massText;
 
 		if (massText) {
-			if (cell.isMe && cell.client.mgxn3bx.options.settings.obj.hideOwnMass) {
+			if (cell.isMe && cell.client.app.options.settings.obj.hideOwnMass) {
 				return;
 			}
 			const bitmapText = massText.text;
 			const scale = (cell.initialRadius / (80 / 1)) * (32 / 10);
 			let y = cell.animY;
 
-			if (cell.client.mgxn3bx.options.settings.obj.nickText && !(cell.isMe && cell.client.mgxn3bx.options.settings.obj.hideOwnNick)) {
+			if (cell.client.app.options.settings.obj.nickText && !(cell.isMe && cell.client.app.options.settings.obj.hideOwnNick)) {
 				y += cell.initialRadius / 3;
 			}
 
@@ -74,7 +74,7 @@ export class Cells {
 	}
 	public static drawNick(cell: Cell, renderer: Renderer): void {
 		if (cell.cellRender.nickText) {
-			if (cell.isMe && cell.client.mgxn3bx.options.settings.obj.hideOwnNick) {
+			if (cell.isMe && cell.client.app.options.settings.obj.hideOwnNick) {
 				return;
 			}
 			const nickText = cell.cellRender.nickText;

@@ -21,12 +21,18 @@ export class Camera {
 	public autoZoom: boolean;
 
 	public constructor(public game: Game) {
-		this.x = 0, this.y = 0, this.targetViewport = 0.055, this.autoZoomViewport = 0.055, this.viewport = 1, this.viewBounds = {
+		this.x = 0, this.y = 0,
+		this.targetViewport = 0.055,
+		this.autoZoomViewport = 0.055,
+		this.viewport = 1, 
+		
+		this.viewBounds = {
 			left: -960,
 			right: 960,
 			top: -540,
 			bottom: 540,
-		}, this.spectatePoint = {
+		},
+		this.spectatePoint = {
 			x: 0,
 			y: 0,
 		};
@@ -45,13 +51,13 @@ export class Camera {
 		this.updateView();
 	}
 	public move() {
-		const cli = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_1);
-		const cli2 = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_2);
+		const cli = this.game.app.clients.get(Client.Type.PLAYER_1);
+		const cli2 = this.game.app.clients.get(Client.Type.PLAYER_2);
 		if (cli || cli2) {
 			const player = cli ? cli.world.player : null;
 			const player2 = cli2 ? cli2.world.player : null;
 			if (cli && player.state === Player.State.ALIVE || cli2 && player2.state === Player.State.ALIVE) {
-				const speed = this.game.mgxn3bx.options.sliders.obj.cameraSpeed;
+				const speed = this.game.app.options.sliders.obj.cameraSpeed;
 				let x;
 				let y;
 				x = this.game.multibox.x;
@@ -71,8 +77,8 @@ export class Camera {
 		// this.game.hslo.menu.options.autoZoom === "on" && (ue *= this.autoZoomViewport);
 		this.viewport += (ue - this.viewport) / 8;
 		// this.viewport += (this.targetViewport - this.viewport) / 20;
-		const fe = this.game.mgxn3bx.renderer.engine.width / 2 / this.viewport;
-		const he = this.game.mgxn3bx.renderer.engine.height / 2 / this.viewport;
+		const fe = this.game.app.renderer.engine.width / 2 / this.viewport;
+		const he = this.game.app.renderer.engine.height / 2 / this.viewport;
 		let border = {
 			left: -7071,
 			top: -7071,
@@ -80,7 +86,7 @@ export class Camera {
 			bottom: 7071,
 		};
 
-		const cli = this.game.mgxn3bx.clients.get(Client.Type.PLAYER_1);
+		const cli = this.game.app.clients.get(Client.Type.PLAYER_1);
 		if (cli && cli.world.border) {
 			border = cli.world.border;
 		}

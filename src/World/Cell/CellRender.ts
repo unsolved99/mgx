@@ -25,21 +25,21 @@ export class CellRender {
 	}
 
 	public setRingColor() {
-		const active = this.cell.client.mgxn3bx.game.multibox.activeTab;
+		const active = this.cell.client.app.game.multibox.activeTab;
 		let color: number;
 		switch (true) {
 			case this.cell.client.type === Client.Type.PLAYER_1:
 				if (active === 1) {
-					color = PIXI.utils.string2hex(this.cell.client.mgxn3bx.options.theming.obj.player1ActiveColor);
+					color = PIXI.utils.string2hex(this.cell.client.app.options.theming.obj.player1ActiveColor);
 				} else {
-					color = PIXI.utils.string2hex(this.cell.client.mgxn3bx.options.theming.obj.player1InactiveColor);
+					color = PIXI.utils.string2hex(this.cell.client.app.options.theming.obj.player1InactiveColor);
 				}
 				break;
 			case this.cell.client.type === Client.Type.PLAYER_2:
 				if (active === 2) {
-					color = PIXI.utils.string2hex(this.cell.client.mgxn3bx.options.theming.obj.player2ActiveColor);
+					color = PIXI.utils.string2hex(this.cell.client.app.options.theming.obj.player2ActiveColor);
 				} else {
-					color = PIXI.utils.string2hex(this.cell.client.mgxn3bx.options.theming.obj.player2InactiveColor);
+					color = PIXI.utils.string2hex(this.cell.client.app.options.theming.obj.player2InactiveColor);
 				}
 				break;
 		}
@@ -49,9 +49,9 @@ export class CellRender {
 	}
 
 	public drawRing() {
-		if (this.cell.client.mgxn3bx.options.settings.obj.multiboxRings) {
+		if (this.cell.client.app.options.settings.obj.multiboxRings) {
 			const cell = this.cell;
-			const sprite = new PIXI.Sprite(cell.client.mgxn3bx.renderer.sprites.ring.texture);
+			const sprite = new PIXI.Sprite(cell.client.app.renderer.sprites.ring.texture);
 			sprite.anchor.set(0.5);
 			sprite.position.set(0, 0);
 			sprite.width = sprite.height = cell.initialRadius * 2;
@@ -84,10 +84,10 @@ export class CellRender {
 		this.containers.circle = container;
 		cell.isTeam;
 		if (cell.customSkin) {
-			cell.client.mgxn3bx.options.settings.obj.customSkins ? this.drawSkin(renderer, cell.customSkin) : void (0);
+			cell.client.app.options.settings.obj.customSkins ? this.drawSkin(renderer, cell.customSkin) : void (0);
 		}
 		if (cell.skin && !cell.customSkin) {
-			cell.client.mgxn3bx.options.settings.obj.vanillaSkins ? this.drawSkin(renderer, cell.skin) : void (0);
+			cell.client.app.options.settings.obj.vanillaSkins ? this.drawSkin(renderer, cell.skin) : void (0);
 		}
 		if (cell.isMe) {
 			this.drawRing();
@@ -123,10 +123,10 @@ export class CellRender {
 			container.alpha = alpha;
 			cell.isTeam;
 			if (this.sprites.skin === null && cell.customSkin) {
-				cell.client.mgxn3bx.options.settings.obj.customSkins ? this.drawSkin(renderer, cell.customSkin) : void (0);
+				cell.client.app.options.settings.obj.customSkins ? this.drawSkin(renderer, cell.customSkin) : void (0);
 			}
 			if (this.sprites.skin === null && cell.skin && !cell.customSkin) {
-				cell.client.mgxn3bx.options.settings.obj.vanillaSkins ? this.drawSkin(renderer, cell.skin) : void (0);
+				cell.client.app.options.settings.obj.vanillaSkins ? this.drawSkin(renderer, cell.skin) : void (0);
 			}
 			this.setRingColor();
 		}
@@ -146,7 +146,7 @@ export class CellRender {
 		if (mass instanceof PIXI.BitmapText) {
 			const scale = (cell.animRadius / (80 / 1)) * (32 / 10);
 			let y = cell.animY;
-			if (cell.client.mgxn3bx.options.settings.obj.nickText && !(cell.isMe && cell.client.mgxn3bx.options.settings.obj.hideOwnNick)) {
+			if (cell.client.app.options.settings.obj.nickText && !(cell.isMe && cell.client.app.options.settings.obj.hideOwnNick)) {
 				y += cell.animRadius / 3;
 			}
 
@@ -170,7 +170,7 @@ export class CellRender {
 	}
 
 	public destroy(soft: boolean = false) {
-		const renderer = this.cell.client.mgxn3bx.renderer;
+		const renderer = this.cell.client.app.renderer;
 		this.destroyed = !soft;
 
 		for (const id in this.sprites) {

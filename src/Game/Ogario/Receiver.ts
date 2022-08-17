@@ -48,8 +48,8 @@ export class Receiver {
 			y: buf.readInt32(),
 		};
 		player.mass = buf.readUInt32();
-		if (player.alive === false && this.socket.player.alive === true && this.socket.ogario.game.mgxn3bx.options.settings.obj.teamCircleOnSpawn) {
-			this.socket.ogario.game.mgxn3bx.renderer.drawCommander(player.position.x, player.position.y, Client.Type.PLAYER_1, true);
+		if (player.alive === false && this.socket.player.alive === true && this.socket.ogario.game.app.options.settings.obj.teamCircleOnSpawn) {
+			this.socket.ogario.game.app.renderer.drawCommander(player.position.x, player.position.y, Client.Type.PLAYER_1, true);
 		}
 		player.alive = true;
 		player.updateTime = Date.now();

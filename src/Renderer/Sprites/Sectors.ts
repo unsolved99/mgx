@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js";
-import { MGxN3Bx } from "../../Init";
+import { application } from "../../Init";
 
 export class Sectors {
 
@@ -11,11 +11,11 @@ export class Sectors {
 		this.container = new PIXI.ParticleContainer();
 	}
 
-	public init(mgxn3bx: MGxN3Bx) {
-		this.createtexture(mgxn3bx);
+	public init(app: application) {
+		this.createtexture(app);
 	}
 
-	public createtexture(mgxn3bx: MGxN3Bx) {
+	public createtexture(app: application) {
 		const canvas = document.createElement("canvas");
 		const ctx = canvas.getContext("2d");
 		const scale = 0.14;
@@ -33,7 +33,7 @@ export class Sectors {
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 		ctx.font = barWidth * 0.6 + "px Product Sans";
-		ctx.fillStyle = mgxn3bx.options.theming.obj.sectorFontColor;
+		ctx.fillStyle = app.options.theming.obj.sectorFontColor;
 		let j = 0;
 		for (; 5 > j; j++) {
 			let i = 0;
@@ -42,7 +42,7 @@ export class Sectors {
 			}
 		}
 		ctx.lineWidth = 100 * scale;
-		ctx.strokeStyle = mgxn3bx.options.theming.obj.sectorStrokeColor;
+		ctx.strokeStyle = app.options.theming.obj.sectorStrokeColor;
 		j = 0;
 		for (; 5 > j; j++) {
 			let i = 0;
